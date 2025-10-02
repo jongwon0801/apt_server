@@ -1,0 +1,87 @@
+<div oc-lazy-load="PresentStep1Module">
+<div ng-controller="PresentStep1Ctrl">
+<div class="row">
+	<div class="col-lg-12">
+	
+	<div class="alert alert-info">
+							 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  
+							  배송선물: 선택한 상품을 배송으로 보내드립니다.<br>
+
+
+
+<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							 휴대폰선물: 선택한 상품을 받는분의 휴대폰으로 선물이 전달됩니다.(받는분이 주소를 입력해 선물을 수령하게 됩니다.)
+							</div>
+	</div>
+</div>
+<div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<!-- 
+	            	<tabset style="margin-bottom:10px;">
+				    
+				    
+					    <tab ng-repeat="menu in menuList" ui-sref="present.gift.step1.cate({cate:menu.key})" ui-sref-active="active" active="false">
+					      <tab-heading>
+					        <i class="glyphicon glyphicon-bell"></i> {{menu.name}}
+					      </tab-heading>
+					    </tab>
+					    
+				  </tabset>
+				  -->
+                  <ul class="nav nav-tabs" style="margin-bottom:10px;">
+                    <li class="active" ng-repeat="menu in menuList" ui-sref="present.gift.step1.list({gcate:$stateParams.gcate,cate:menu.key,page:'1',status:''})" ui-sref-active="active" active="false"><a ><i class="glyph icon glyphico n-bell"></i> {{menu.name}}</a></li>
+                    
+                  </ul>
+				  <div ui-view></div>	  
+	            		   
+	               
+	            </div>
+	        </div>
+</div>
+<!-- 
+	<div class="row"> 
+		<div class="col-md-12" style="margin-bottom:10px;">
+			<input type="text" class="form-control" ng-model="item.title" placeholder="선물 제목">
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-md-4" ng-repeat="good in goodsList">
+            <div class="ibox">
+                <div class="ibox-content product-box">
+					
+                    <div class="product-imitation" style="position: relative;">
+                    	<a ui-sref="goods.view(good)">
+                    	<img width="200" height="200" ng-src="{{good.thumbnail.thumbnailUrl}}">
+                         <div ng-if="good.kind=='C'" style="position: absolute;right:0; top:0;">
+                    		쿠폰상품
+                    	  </div>
+                    	</a>  
+                    </div>
+                   
+                    <div class="product-desc">
+                        <span class="product-price">
+                            {{good.salePrice|number}}원
+                        </span>
+                        <small ng-if="false" class="text-muted">ddd</small>
+                        <a ui-sref="goods.view(good)" class="product-name">{{good.title}}</a>
+                        <div class="small m-t-xs">
+                            {{item.summary}}
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <button ng-if="false" type="button" ng-click="goStep2(good)" class="btn btn-xs btn-outline btn-primary">선택 <i class="fa fa-long-arrow-right"></i> </button>
+                            
+                            <input type="radio" name="aa" ng-model="item.goods" ng-value="good"> 상품선택
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    -->
+    <!-- >a class="btn btn-primary" ui-sref="present.gift.step2" >다음</a-->
+</div>
+</div>

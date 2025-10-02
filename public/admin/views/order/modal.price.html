@@ -1,0 +1,76 @@
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+        <h4 class="modal-title">상품가격등록</h4>
+    </div>
+    <div class="modal-body">
+        <form role="form" ng-submit="ok()" method="post" class="form-horizontal">
+                    
+                <div class="form-group">
+                    <label class="col-sm-2" for="commission">태그아이디</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="item.tid" placeholder="태그아이디" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2" for="commission">카테고리</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" ng-options="code.groupName as code.groupName for code in groupNameList" ng-model='item.groupName' required>
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control" ng-options="code.productName as code.productName for code in productNameList" ng-model='item.productName' ng-change="item.price=t.price" required>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-sm-2" for="commission">세탁유형</label>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model='item.washType' required>
+                                <option selected>드라이</option>
+                                <option>물세탁</option>
+                                <option>다림질</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model='item.grade' required>
+                                <option selected>일반</option>
+                                <option>고급</option>
+                                <option>명품</option>
+                                <option>아동</option>
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody ng-repeat="price in item.prices">
+                                <tr>
+                                    <td style="vertical-align:middle">단가</td>
+                                    <td style="vertical-align:middle">{{item.price | currency }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle">수량</td>
+                                    <td style="vertical-align:middle">{{item.num }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle">총금액</td>
+                                    <td style="vertical-align:middle">{{item.num *item.price | currency }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                               
+                </div>
+                    
+                </div>
+                
+                
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ok()">확인</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">닫기</button>
+    </div>
+    

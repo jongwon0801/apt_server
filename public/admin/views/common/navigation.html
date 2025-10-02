@@ -1,0 +1,95 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="dropdown profile-element" dropdown>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{globals.currentUser.userId}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block">관리자 메뉴<b class="caret"></b></span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a ui-sref="logout">로그아웃</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    애플박스
+                </div>
+
+            </li>
+
+            <li ng-class="{active: $state.includes('buyer')}">
+                <a ui-sref="buyer.list"><i class="fa fa-shopping-cart"></i> <span class="nav-label">구매자</span> </a>
+                
+            </li>
+            
+            <li ng-class="{active: $state.includes('shop')}">
+                <a ui-sref="shop.list"><i class="fa fa-laptop"></i> <span class="nav-label">상점</span> </a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('shop')}">
+                    <li ui-sref-active="active"><a ui-sref="shop.list">상점 </a></li>
+                    <li ui-sref-active="active"><a ui-sref="shop.productlist">상품</a></li>
+                    <li ui-sref-active="active"><a ui-sref="shop.orderlist">주문</a></li>
+                    <li ui-sref-active="active"><a ui-sref="shop.accountlist.daily">정산</a></li>
+                    <li ui-sref-active="active"><a ui-sref="shop.category">카테고리</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('order')}" >
+                <a ui-sref="order.parcellist"><i class="fa fa-laptop"></i> <span class="nav-label">주문</span> </a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('order')}">
+                    <li ui-sref-active="active"><a ui-sref="order.parcellist">택배</a></li>
+                    <li ui-sref-active="active"><a ui-sref="order.thingslist">세탁</a></li>
+                    <li ui-sref-active="active"><a ui-sref="order.superlist">슈퍼</a></li>
+                    <li ui-sref-active="active"><a ui-sref="order.paylist">결제내역</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('applebox')}">
+                <a ui-sref="applebox.list"><i class="fa fa-diamond"></i> <span class="nav-label">보관함</span> <span class="fa arrow"></span> </a>
+                
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('applebox')}">
+                    <li ui-sref-active="active"><a ui-sref="applebox.list">설치목록</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.lockerlist">보관물품</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.thingslist">서비스이용</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.saveloglist">보관로그</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.takeloglist">수령로그</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.map">지도</a></li>
+                </ul>
+                
+            </li>
+            <li ng-class="{active: $state.includes('laundry')}">
+                    <a ui-sref="laundry.noticelist"><i class="fa fa-laptop"></i> <span class="nav-label">세탁공지</span></a>
+                     
+                </li>
+            <li ng-class="{active: $state.includes('member')}">
+                <a ui-sref="member.list"><i class="fa fa-table"></i> <span class="nav-label">사용자</span></a>
+                
+            </li>
+            <li ng-class="{active: $state.includes('okbox')}">
+                    <a ui-sref="okbox.list"><i class="fa fa-laptop"></i> <span class="nav-label">기부</span></a>
+                    
+                </li>
+            <li ng-class="{active: $state.includes('rfid')}">
+                <a ui-sref="rfid.list"><i class="fa fa-sitemap"></i> <span class="nav-label">보관자</span></a>
+            </li>
+            <li ng-class="{active: $state.includes('config')}">
+                <a ui-sref="config.sms"><i class="fa fa-laptop"></i> <span class="nav-label">설정</span><span class="fa arrow"></span></a>
+
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('config')}">
+                    <li ui-sref-active="active"><a ui-sref="config.smslist">sms목록</a></li>
+                    <li ui-sref-active="active"><a ui-sref="config.sms">sms보내기</a></li>
+                    <li ui-sref-active="active"><a ui-sref="config.noticelist">공지사항</a></li>
+                    <li ui-sref-active="active"><a ui-sref="config.server">서버목록</a></li>
+                    <li ui-sref-active="active"><a ui-sref="config.vpnlist">vpn목록</a></li>
+                    
+                    
+                </ul>
+            </li>
+
+            
+        </ul>
+
+    </div>
+</nav>

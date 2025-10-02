@@ -1,0 +1,101 @@
+<div oc-lazy-load="ConfigNoticeEditModule">
+    <div ng-controller="NoticeEditCtrl">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>공지사항</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a ui-sref="home">홈</a>
+                    </li>
+                    
+                    <li class="active">
+                        <strong>공지사항</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+        
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>공지
+                                <small>* 는 필수항목입니다.</small>
+                            </h5>
+                            
+                        </div>
+                        <div class="ibox-content">
+                            <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+                                <div ng-if="item.noticeSq" class="form-group"><label class="col-sm-2 control-label">*고유번호</label>
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.noticeSq" class="form-control" readOnly></div>
+                                 </div>
+                                 <div class="hr-line-dashed"></div>
+                                 <div class="form-group"><label class="col-sm-2 control-label">*구매자아이디</label>
+                                     <div class="col-sm-10"><input type="text"  ng-model="item.buyerSq" class="form-control" required></div>
+                                 </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">*제목</label>
+                                    <div class="col-sm-10"><input type="text"  ng-model="item.title" class="form-control" required></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">*타입</label>
+        
+                                    <div class="col-sm-2">
+                                        <select class="form-control" ng-change="updateUpload()" ng-options="code.key as code.name for code in myCache.get('notice.kind')" ng-model='item.kind'>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                
+                                <div class="form-group"><label class="col-sm-2 control-label">*파일</label>
+                                    <!--
+                                    <div class="col-sm-3">
+                                        <input ng-model="item.preUrl.originalname" type="text" class="form-control" disabled>
+                                        
+                                    </div>
+                                    -->
+                                    <div class="col-sm-4" ng-if="item">
+                                        <span>{{item.dataImg.originalname}}</span>
+                                        <span class="btn btn-success fileinput-button" required>
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>파일 선택...</span>
+                                            <input class="display:block"   ng-init="initUpload();" id="fileupload" type="file" name="files[]" data-url="/upload" multiple>
+                                        </span>
+                                        <a class="image-popup-no-margins" ng-href="/upload/{{item.dataImg.fileKey}}" ng-if="item.dataImg" >
+                                            <!--
+                                            <img ng-src="/upload/{{item.preUrl.fileKey}}/300x300" width="35" height="30">
+                                            -->
+                                        </a>
+                                        
+                                    </div>	
+                                </div> 
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+                                    
+                                    <div class="col-sm-2">
+                                    
+                                        <select class="form-control" ng-options="code.key as code.name for code in myCache.get('notice.status')" ng-model='item.status'>
+                                        </select>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+                                        <button class="btn btn-primary" type="submit">확인</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

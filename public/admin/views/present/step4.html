@@ -1,0 +1,157 @@
+<div oc-lazy-load="PresentStep4Module">
+<div ng-controller="PresentStep4Ctrl">
+
+	<div class="row">
+		<div class="col-lg-12">
+	    	<div class="table-responsive">
+			<table class="table table-bordered">
+		    	
+			    <tbody>
+			    	<tr>
+			        	<td width=100>
+		               		<img ng-src="{{item.goods.thumbnail.thumbnailUrl}}" width=100 height=100>								
+		                </td>
+		                <td>
+		                	<div>
+			                	<div>{{myCache.getValue('goods.kind',item.goods.kind)}}</div>
+			               		<div>{{item.goods.title}}</div>
+			               		<div>가격:{{item.goods.salePrice | number}}원</div>
+			               		<div ng-if="item.goods.productType=='B'">{{item.goods.option.package.description}}</div>
+			               		<div ng-if="item.goods.productType=='C'">
+			               			리본문구 좌:{{item.goods.option.leftText}}<br>
+			               			리본문구 우:{{item.goods.option.rightText}}
+			               		</div>
+			               		<div>유효기간:{{item.goods.availDate |  date:'yyyy-MM-dd'}}</div>
+			               		
+		               		</div>
+		               		
+		                </td>
+			         </tr>
+			         <tr>
+			         	<td colspan=2>
+			         		<div>주문수량 {{item.cnt*item.userList.length}}개, 합계금액:{{item.goods.salePrice*item.userList.length*item.cnt | number}}원</div>
+			         	</td>
+			         </tr>
+			         <tr>
+			         	<td><strong>받는사람</strong></td>
+			         	<td>
+			         		<ul ng-repeat="user in item.userList">
+			         			<li>{{user.name}} / {{user.hp}}</li> 
+			         		</ul>
+			         	</td>
+			         </tr>
+			         <tr>
+			         	<td><strong>메세지</strong></td>
+			         	<td>
+			         		<div>{{item.message.content}}</div>
+			         	</td>
+			         </tr>
+			         <tr ng-if="item.gubun=='A'">
+				         	<td><strong>배송정보</strong></td>
+				         	<td>
+				         		<div>주문일:{{item.shipping.regDate | date:'yyyy-MM-dd'}} </div>
+				         		<div ng-if="item.goods.productType=='B'">옵션:(10살초:{{item.goods.option.info.candal10}},1살초:{{item.goods.option.info.candal1}})</div>
+		         		 		<div>받는사람:{{item.shipping.to.name}}</div>
+				         		<div>휴대폰:{{item.shipping.to.hp}}</div>
+				         		<div>주소:{{item.shipping.addr.addr}} {{item.shipping.addr.addrDetail}}</div>
+				         		<div>예약배송일:{{item.shipping.deliveryDate | date:'yyyy-MM-dd'}}</div>
+				         		<div>배송비:{{item.pay.shippingPrice | number}}원</div>
+				         		<div ng-if="item.productType=='B'">10살초:{{item.goods.option.info.candal10}},1살초:{{item.goods.option.info.candal1}}</div>
+				         	</td>
+					 </tr>
+			         <tr ng-if="false">
+			         	<td><strong>가격정보</strong></td>
+			         	<td>
+			         		<div>전체 결제금액 {{item.cnt*item.goods.salePrice*item.userList.length+item.pay.shippingPrice|number}}원</div>
+			         		<div>상품금액:{{item.cnt*item.goods.salePrice*item.userList.length|number}}원</div>
+			         		<div ng-if="item.gubun=='A'">배송비:{{item.pay.shippingPrice|number}}원</div>
+			         		
+			         	</td>
+			         </tr>
+			         <tr>
+			         	<td><strong>결제정보</strong></td>
+			         	<td>
+			         		<div class='row' ng-if="false">
+			         			<div class="row-md-12">
+					    			<button type='button' class='btn btn-primary btn-block' ng-click="openPoint()">포인트사용</button>
+					    		</div>
+					    	</div>
+					    	<div class="row-md-12">
+						    	<div class="form-control">주문금액: {{item.cnt*item.goods.salePrice*item.userList.length+item.pay.shippingPrice|number}}원</div> 
+						    </div>
+					    	<div class="row-md-12" ng-if="item.customer.payYn=='Y'">
+						    	<div class="form-control">결제할금액: {{item.pay.fillPrice|number}}원</div> 
+						    </div>
+						    <div class="row-md-12" ng-if="item.customer.payYn=='Y'">
+						    	# 본 상품은 선불상품 입니다.<br> 
+						    </div>
+						    <div class="row-md-12" ng-if="item.customer.payYn=='N'">
+						    	# 본 상품은 후불상품 입니다.<br>
+
+  									결제금액은 익월 청구됩니다. 
+						    </div>
+			         		
+			         	</td>
+			         </tr>
+			         <tr ng-if="item.customer.payYn=='Y'">
+			         	<td colspan=2>
+			         		<div class="form-control">결제방식 </div>
+							<input type='radio' name=r1 value="card" ng-model="item.pay.method">신용카드
+							<input type='radio' name=r1 value="hp" ng-model="item.pay.method">휴대폰
+									<br>
+					    	구매 완료시 MMS 발신번호는 고객센터 번호인 1500-1919 로 발송됩니다.
+					    	
+					    	<br>
+					    	고객님의 휴대번호(또는 대표번호)는 메시지 본문에 '보내시는 분 번호'로 표시됩니다.
+					    	
+					    	<br>
+					    	<br>		    
+			         	</td>
+			         </tr>
+				</tbody>
+			</table>
+			</div>
+		</div>  
+	</div>
+<!-- // -->
+
+<div class="row">
+
+                <div class="col-lg-12">
+
+                    
+							<div class="panel panel-danger">
+							  <div class="panel-heading">발송번호 안내</div>
+							  <div class="panel-body">
+							    <p class="m-t">
+                                                       구매 완료시, SMS 발신번호는 고객센터 번호인 02-6383-0101로 발송됩
+니다. 고객님의 휴대폰번호(또는 대표번호)는 메시지 본문에 ‘보내시는분 번호’로 표시됩니다.
+
+                                                    </p>
+							  </div>
+							</div>
+							<div class="panel panel-default">
+							  <div class="panel-body">
+							  	<h3>
+							  		<input id="agree" type='checkbox' checked>&nbsp;구매확인 및 동의
+							  	</h2>
+							    구매하시는 상품의 정보 및 가격, 배송정보를 확인하였으며, 구매에 동의 하십니까?
+							    [전장상거래법 제 8조2항]
+							  </div>
+							</div>
+                            
+                       
+                </div>
+
+            </div>
+
+<!-- .. -->
+
+	<div class='row text-center'>
+		<button ng-if="item.customer.payYn=='N'" type='button' class='btn btn-primary' ng-click="tryOrder()">선물보내기</button>
+		<button ng-if="item.customer.payYn=='Y'" type='button' ng-click="tryOrder()" class="btn btn-primary">결제하기</button>
+	</div>
+	
+</div>
+</div>	
+	

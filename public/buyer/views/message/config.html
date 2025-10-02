@@ -1,0 +1,59 @@
+<div oc-lazy-load="MessageConfigModule">
+<div ng-controller="ListCtrl">
+	<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>메세지관리</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">홈</a>
+            </li>
+            <li>
+                <a>메세지관리</a>
+            </li>
+            <li class="active">
+                <strong>메세지관리</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+    <div class="row">
+        <div class="col-lg-12">
+			<div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>설정 
+                        <small></small>
+                    </h5>
+                    
+                </div>
+                <div class="ibox-content">
+           			<div class="table-responsive">
+                         <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                	<th>상황</th>
+	                            	<th>활성</th>
+	                            	<th>등록일</th>
+	                            	<th>조회</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                <tr ng-repeat="item in list">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.status=='A'?'활성':'비활성'}}</td>
+                                    <td>{{item.regDate | date:'yyyy-MM-dd'}}</td>
+                                    <td><button type='button' class="btn btn-white" ng-click="onView(item)">설정</button></td>
+                                </tr>
+                               </tbody>
+                     	  </table>
+                     </div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+</div>

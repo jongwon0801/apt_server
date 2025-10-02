@@ -1,0 +1,37 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name" style="font-size:120px;">O2O박스</h1>
+        </div>
+        <h3>Welcome to 오투오박스</h3>
+        <p ng-if="false">Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+        </p>
+        <p ng-if="false">Login in. To see it in action.</p>
+        <form class="m-t" role="form" method="post" name="myForm" ng-submit="tryLogin()">
+            <div class="form-group">
+                <input type="text" name="userId" id="userId" class="form-control" placeholder="유저아이디" ng-model="userId" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="패스워드" ng-model="password" required>
+            </div>
+           
+		<button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary block full-width m-b">Login</button>
+        <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    
+
+            <a ui-sref="forgot_password"><small>Forgot password?</small></a>
+            <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <a ng-if="false" class="btn btn-sm btn-white btn-block" ui-sref="customer">고객사 가입신청</a>
+        </form>
+        <p ng-if="false" class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+    </div>
+    <div style="color:white;">
+    <strong>Copyright</strong> 위키박스 &copy; 2016-2020
+        
+        (주)위키박스<br>
+		주소: 경기도 부천시 부천로 198번길 18, 202동 1210호(춘의동) Tel 02-6383-0101 <br>
+		대표이사: 정의신 | 개인정보관리책임자: 정의신 | 사업자등록번호 : 113-86-76417 <br>
+		© 2016 CANDYMOBILE all rights reserved.
+		
+    </div>
+</div>

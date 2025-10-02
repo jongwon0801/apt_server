@@ -1,0 +1,136 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Basic Form</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Forms</a>
+            </li>
+            <li class="active">
+                <strong>Basic Form</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>고객사가입 신청
+                        <small>* 는 필수항목입니다.</small>
+                    </h5>
+                    
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal" ng-submit="trySave()">
+                        <div class="form-group"><label class="col-sm-2 control-label">*회사명</label>
+
+                            <div class="col-sm-10"><input ng-model="customer.companyName" type="text" class="form-control" disabled></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+						<div class="form-group"><label class="col-sm-2 control-label">*대표자성명</label>
+
+                            <div class="col-sm-10"><input ng-model="customer.ceoName" type="text" class="form-control" disabled></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+						<div class="form-group"><label class="col-sm-2 control-label">*창립일</label>
+							<div class="col-sm-10">
+                            <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" id='date' class="form-control" ng-model="customer.foundDate" value="" data-date-format="yyyy/mm/dd">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+						<div class="form-group"><label class="col-sm-2 control-label">*사업자등록번호</label>
+
+                            <div class="col-sm-10"><input ng-model="customer.licenseNumber" type="text" data-mask="999-99-99999" class="form-control" disabled></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+						<div class="form-group"><label class="col-sm-2 control-label">*사업장주소</label>
+							<div class="col-sm-10">
+								<div class="row input-group m-b">
+                                    <div class="col-md-4"><input type="text" placeholder="" ng-model="customer.zipNo" ng-click="openModal()"
+                                                                 class="form-control" readOnly></div>
+                                    
+                                    <div class="col-md-2"><input type="button" class="btn primary" ng-click="openModal()" value="우편번호검색"></div>
+                                    
+                                </div>
+                                <div class="input-group m-b">
+                                	<input type="hidden"  ng-model="customer.addr"/>	
+                                	{{customer.addr}}
+                                </div>
+                                <div class="input-group m-b" style="width:100%">	
+                                	<input type="text" class="form-control" ng-model="customer.addrDetail" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">*사업자 업태</label>
+
+                            <div class="col-sm-10"><input type="text" ng-model="customer.category" class="form-control" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*사업자 종목</label>
+
+                            <div class="col-sm-10"><input type="text"  ng-model="customer.kind" class="form-control" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*담당자 전화번호</label>
+
+                            <div class="col-sm-10"><input type="tel"  ng-model="customer.managerPhone" class="form-control" required></div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*담당자명</label>
+
+                            <div class="col-sm-10"><input type="text"  ng-model="customer.managerName" class="form-control" required></div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*담당자 핸드폰</label>
+
+                            <div class="col-sm-10"><input type="tel" ng-model="customer.managerHp" class="form-control" data- mask="(999) ?999-9999" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*이메일</label>
+
+                            <div class="col-sm-10"><input type="email" ng-model="customer.managerEmail" class="form-control" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*담당자 부서</label>
+
+                            <div class="col-sm-10"><input ng-model="customer.managerPart" type="text" class="form-control" required></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-2 control-label">*담당자 직위</label>
+
+                            <div class="col-sm-10"><input ng-model="customer.managerSpot" type="text" class="form-control" required></div>
+                        </div>
+                       
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit">수정하기</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+<div oc-lazy-load="ProductEditModule">
+<div ng-controller="ProductEditCtrl">
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>상품등록</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">홈</a>
+            </li>
+            <li>
+                <a>상품관리</a>
+            </li>
+            <li class="active">
+                <strong>상품등록</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+	                    <h5>상점정보관리 
+	                        <small>* 는 수정할수 있는 항목입니다.</small>
+	                    </h5>
+						
+	                </div>
+					
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+                            <div class="form-group"><label class="col-sm-2 control-label">*상점</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.shopSq as code.companyName for code in shopList" ng-model='item.shopSq' >
+					                </select>
+					             </div>
+					        </div>
+	                    
+	                    	<div class="form-group"><label class="col-sm-2 control-label">*분류</label>
+                                <div class="col-sm-10">
+                                    <span class="input-group-btn">
+                                        <select class="form-control" ng-options="code.key as code.name for code in myCache.get('pcode')" ng-model='item.cate' required>
+                                            <option value=''>1차분류</option>
+                                        </select>
+                                    </span>   	
+                                    <span class="input-group-btn">
+                                        <select class="form-control"  ng-options="code.key as code.name for code in category2List" ng-model='item.categoryCode' required>
+                                            <option value=''>2차분류</option>
+                                        </select>
+                                    </span>   	
+                                </div>  
+                            </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">*상품명</label>
+	                            <div class="col-sm-10"><input type="text"  placeholder="상품명" ng-model="item.title" class="form-control" required></div>
+	                        </div>	
+	                        <div class="form-group"><label class="col-sm-2 control-label">*상품이미지</label>
+                                <!--
+	                            <div class="col-sm-3">
+                                    <input ng-model="item.preUrl.originalname" type="text" class="form-control" disabled>
+                                    
+                                </div>
+                                -->
+	                            <div class="col-sm-4">
+                                    <span>{{item.preUrl.originalname}}</span>
+	                            	<span class="btn btn-success fileinput-button" required>
+				        				<i class="glyphicon glyphicon-plus"></i>
+				        				<span>이미지 선택...</span>
+				        				<input class="display:block"   ng-init="initUpload();" id="fileupload" type="file" name="files[]" data-url="/upload" multiple>
+									</span>
+				    				<a class="image-popup-no-margins" href="/upload/{{item.preUrl.fileKey}}" ng-if="item.preUrl" >
+								        <img ng-src="/upload/{{item.preUrl.fileKey}}/300x300" width="35" height="30">
+								      </a>
+									
+								</div>	
+	                        </div> 
+                            <div class="form-group"><label class="col-sm-2 control-label">*상세사진</label>
+                                <div class="col-sm-10">
+									<div class="dropzone"  id="dropzone" dropzone="dropzoneConfig"></div>
+								</div>
+							</div>
+                            <div class="form-group"><label class="col-sm-2 control-label">*소개</label>
+								<div class="col-sm-10">
+                                    <!--textarea ng-model="item.intro" type="text" class="form-control"></textarea-->
+                                    <summernote lang="ko-KR" height="200" ng-model="item.intro"></summernote>
+					          
+								</div>
+                            </div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*가격</label>
+	                            <div class="col-sm-10"><input type="number"  placeholder="가격" ng-model="item.originPrice" class="form-control" required></div>
+	                        </div>	
+
+	                        <div class="form-group"><label class="col-sm-2 control-label">*판매수량제한</label>
+	                            <div class="col-sm-4"><input type="number"  placeholder="판매수량제한" ng-model="item.cnt" class="form-control"></div>
+                                <label class="control-label">판매수량제한이 없으면 비워두세요.</label>
+	                        </div>	
+                            <div class="form-group"><label class="col-sm-2 control-label">*상품할인</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('yn')" ng-model='item.saleYn' >
+					                </select>
+					             </div>
+					        </div>        
+	                        <div class="form-group" ng-show="item.saleYn=='Y'"><label class="col-sm-2 control-label">*할인율/가격</label>
+	                            <div class="col-sm-2">
+                                    <input type="text"  placeholder="할인율/가격" ng-model="item.salePoint" class="form-control"  ng-required="item.saleYn=='Y'">
+                                    
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="r" value="A" ng-model="item.saleType">
+                                        <label>%</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="r" value="B" ng-model="item.saleType">
+                                        <label>원 </label>
+                                    </div>
+                                </div>
+                                
+                                <label class="col-sm-2 control-label">*할인기간</label>
+                                
+                                <div class="col-sm-4">
+                                    <div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+                                </div>
+                                
+	                        </div>
+
+	                        <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('product.status')" ng-model='item.status' >
+					                </select>
+					             </div>
+					        </div> 
+                            <div class="form-group">
+	                            <div class="col-sm-6 col-sm-offset-2">
+	                                <button class="btn btn-primary" type="submit">확인</button>
+									<button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                
+	                            </div>
+	                        </div>       
+	                    </form>
+	                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,167 @@
+<div oc-lazy-load="OrderThingsEditModule">
+    <div ng-controller="OrderThingsEditCtrl">
+    
+    
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>세탁주문내역</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="home">홈</a>
+                </li>
+                <li>
+                    <a>주문</a>
+                </li>
+                <li class="active">
+                    <strong>세탁주문내역</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+    
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        
+        <div class="row">
+            <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>주문내역 
+	                        
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal">
+	                    	
+	                        
+	                        <div class="form-group">
+                                <label class="col-sm-2 control-label">*주문자</label>
+                                <div class="col-sm-4">{{item.locker.saveName}}-{{item.locker.saveHp}}
+                                        <a ng-click="onMemberView(item)" ng-bind="item.memberSq"></a>
+                                </div>
+                                <label class="col-sm-2 control-label">*상태</label>
+	                            <div class="col-sm-4">
+                                        <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('order.status.B')" ng-model='item.status' disabled>
+                                            </select>
+                                        </div>
+	                        </div>
+                            
+                            <div class="form-group">
+                                    <label class="col-sm-2 control-label">*담당세탁소</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" ng-options="code.shopSq as code.companyName for code in shopList" ng-model='item.shopSq' >
+                                        </select>
+                                    </div>
+                                </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">*보관함명</label>
+                                
+                                <div class="col-sm-4">{{item.locker.boxName}}</div>
+                                <label class="col-sm-2 control-label">*주문일</label>
+	                            <div class="col-sm-4">{{item.regDate | date:'yyyy-MM-dd HH:mm'}}</div>
+                            </div>
+                            
+                            
+                            <div class="form-group"><label class="col-sm-2 control-label">*수거요청일</label>
+                                <div class="col-sm-10">{{item.visitDate}}</div>
+                            </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">*수거주소지</label>
+                                <div class="col-sm-10">{{item.addr}}</div>
+                            </div>
+                            <div class="form-group"><label class="col-sm-2 control-label">*세탁물</label>
+                                <div class="col-sm-4">상의:{{item.things.upper_cnt}},하의:{{item.things.down_cnt}},기타:{{item.things.etc_cnt}}
+                                    <pre ng-if="item.things.items">{{ item.things.items | json}}</pre>    
+                                </div>
+                                <label class="col-sm-2 control-label">*수거일</label>
+	                            <div class="col-sm-4">{{item.takeDate | date:'yyyy-MM-dd HH:mm'}}</div>
+                            </div>
+                            
+                            
+                            
+                            <div class="form-group"><label class="col-sm-2 control-label">*요청내역</label>
+	                            <div class="col-sm-10"><textarea class="form-control" ng-model="item.reqItem" placeholder='없음' ng-readonly="true"></textarea></div>
+                            </div>
+                            
+	                    </form>
+	                </div>
+	            </div>
+            </div>
+            
+
+            <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+                        <h5>상품가격목록 </h5>
+                        <div class="ibox-tools">
+                            <button ng-click="newPrice()" ng-if="false" class="btn btn-primary btn-sm">상품가격 등록등록</button>
+                        </div>
+                    </div>
+	                <div class="ibox-content">
+	                    <div class="table-responsive">
+                            <table class="table table-bordered">
+                                    <tbody ng-repeat="price in item.prices">
+	                                    <tr>
+	                                        <td style="vertical-align:middle;align:center" colspan="3">
+                                                {{price.tid}}-{{price.groupName}}-{{price.productName}}-{{price.washType}}-{{price.grade}}
+                                            </td>
+                                            <td rowspan=2 width=60 ng-if="false"><button class="btn btn-primary btn-sm">삭제</button></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="vertical-align:middle">{{price.price | currency}}</td>
+                                                <td style="vertical-align:middle">{{price.num | number }}</td>
+                                                <td style="vertical-align:middle">{{price.price * price.num |  currency }}</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            <div>총 금액:{{item.totalPrice || currency}}</div>
+                        </div>
+	                </div>
+	            </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>사진목록 </h5>
+                        <div class="ibox-tools">
+                            <button ng-click="newPrice()" ng-if="false" class="btn btn-primary btn-sm">상품가격 등록등록</button>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr ng-repeat="photo in item.photos">
+                                        <td style="vertical-align:middle; width:150px;">
+                                            
+                                            <a class="image-popup-no-margins" href="/upload/{{photo.fileKey}}">
+                                                <img ng-src="/upload/{{photo.fileKey}}/300x300" width="150" height="150">
+                                                </a>
+                                        </td>
+                                        <td style="vertical-align:middle"><pre>{{photo.desc}}</pre></td>
+                                            
+                                    </tr>
+                                        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                    <pre>{{item.confirm}}</pre>
+            </div>
+            
+        </div>
+        <div class="row"  ng-if="item.status=='A' && item.method=='B'">
+                <div class="col-lg-12"> 
+                    <button ng-click="tryCancel()" class="btn btn-primary btn-sm btn-block">취소 </button>
+
+                    <button ng-click="trySave()" class="btn btn-primary btn-sm btn-block">처리위탁</button>
+                </div>
+        </div>
+
+    </div>
+    </div>
+    </div>

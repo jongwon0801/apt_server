@@ -1,0 +1,137 @@
+
+<div oc-lazy-load="SellerEditModule">
+<div ng-controller="EditCtrl">	
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>판매사</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">Home</a>
+	            </li>
+	            <li>
+	                <a>판매사</a>
+	            </li>
+	            <li class="active">
+	                <strong>판매사 조회</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>업체정보 관리 
+	                        <small>* 는 수정할수 있는 항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+	                        <div class="form-group"><label class="col-sm-2 control-label">*판매사 아이디</label>
+		                            <div class="col-sm-10"><a ui-sref="member.edit(item)">{{item.userId}}</a></div>
+		                     </div>
+		                    <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                        	<label class="col-sm-2 control-label">*회사명</label>
+	                            <div class="col-sm-4"><input type="text"  ng-model="item.companyName" class="form-control"  disabled></div>
+	                            <label class="col-sm-2 control-label">*대표자 성명</label>
+	                            <div class="col-sm-4"><input type="text"  ng-model="item.ceoName" class="form-control"  disabled></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*사업자등록번호</label>
+	                            <div class="col-sm-4"><input ng-model="form.licenseNumber" type="text" data-mask="999-99-99999" class="form-control" disabled></div>
+	                            <label class="col-sm-2 control-label">*사업자등록증</label>
+	                            <div class="col-sm-4">
+	                            	<span class="btn btn-success fileinput-button" disabled>
+				        				<i class="glyphicon glyphicon-plus"></i>
+				        				<span>이미지 선택...</span>
+				        				<input class="display:block"   ng-init="initUpload();" id="fileupload" type="file" name="files[]" data-url="/upload" multiple>
+									</span>
+				    				<img ng-src='{{item.thumbnail}}' width="30" height="35"/>
+									
+								</div>	
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							
+							<div class="form-group"><label class="col-sm-2 control-label">*사업장주소</label>
+								<div class="col-sm-10">
+									<div class="row input-group m-b">
+	                                    <div class="col-md-4"><input type="text" placeholder="" ng-model="item.zipNo"
+	                                                                 class="form-control" readOnly></div>
+	                                    
+	                                    <div class="col-md-2"><input type="button" class="btn primary" ng-click="addrOpen()" value="우편번호검색" disabled></div>
+	                                    
+	                                </div>
+	                                <div class="input-group m-b">
+	                                	<input type="hidden"  ng-model="item.addr"/>	
+	                                	{{item.addr}}
+	                                </div>
+	                                <div class="input-group m-b" style="width:100%">	
+	                                	<input type="text" class="form-control" placeholder="상세주소" ng-model="item.addrDetail" disabled>
+	                                </div>
+	                            </div>
+	                            
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                        	<label class="col-sm-2 control-label">*사업자 업태</label>
+	                            <div class="col-sm-4"><input type="text"  ng-model="item.companyType" class="form-control"  disabled></div>
+	                            <label class="col-sm-2 control-label">*사업자 종목</label>
+	                            <div class="col-sm-4"><input type="text"  ng-model="item.companyKind" class="form-control"  disabled></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*담당자명</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.managerName" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*담당자핸드폰</label>
+	
+	                            <div class="col-sm-10"><input type="hp"  ng-model="item.managerHp" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*담당자이메일</label>
+	
+	                            <div class="col-sm-10"><input type="email"  ng-model="item.managerEmail" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*판매수수료</label>
+								<div class="col-sm-2">
+	                            <input type="text"  ng-model="item.commission" class="form-control"  disabled></div>
+	                            <label class="col-sm-6 cont ol-label">본사에서 받는 상품판매수수료(%)</label>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                        	<label class="col-sm-2 control-label">*계좌번호</label>
+	                            <div class="col-sm-3"><input type="text"  ng-model="item.accountNumber" class="form-control"  disabled></div>
+	                            <label class="col-sm-1 control-label">*은행명</label>
+	                            <div class="col-sm-2"><input type="text"  ng-model="item.accountBank" class="form-control"  disabled></div>
+	                            <label class="col-sm-1 control-label">*예금주</label>
+	                            <div class="col-sm-2"><input type="text"  ng-model="item.accountName" class="form-control"  disabled></div>
+	                        </div>
+	                                                <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*정산일</label>
+								<div class="col-sm-2"><input type="text"  ng-model="item.accountDay" class="form-control"  disabled></div>
+	                        </div>
+	                        
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                            <div class="col-sm-4 col-sm-offset-2">
+	                                <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                <button class="btn btn-primary" type="submit">저장하기</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

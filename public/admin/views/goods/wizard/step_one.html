@@ -1,0 +1,50 @@
+<fieldset>
+    <div class="row">
+        <div class="col-lg-12">
+            
+            <div class="form-group">
+            	    <select class="form-control" ng-options="code.key as code.name for code in myCache.get('goods.category')" ng-model='item.category' required>
+            	    	<option value=''>카테고리선택</option>
+	               	</select>
+            </div>
+            
+            <div class="form-group">
+               
+                <input placeholder="상품명" ng-model="item.title" type="text" class="form-control" required>
+               
+            </div>
+            <!-- 
+            <div class="form-group">
+                <div class="checkbox checkbox-primary">
+	                 <input type="checkbox" ng-true-value="Y" aria-label="Single checkbox Two">
+	                 <label>배송상품여부</label>
+	             </div>
+			    
+            </div>
+             -->
+            <div class="form-group">
+                
+                <input placeholder="한줄소개" ng-model="item.summary" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                
+                <input  placeholder="판매가격" ng-model="item.salePrice" type="number" class="form-control" required>
+            </div>
+            <div class="form-group" ng-if="item">
+                        <div class="dropzone" dropzone="dropzoneConfig"></div>
+            </div>
+            
+            
+        </div>
+        <!-- 
+        <div class="col-lg-4">
+            <div class="text-center">
+                <div style="margin-top: 20px">
+                    <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                </div>
+            </div>
+        </div>
+         -->
+    </div>
+    <a class="btn btn-primary" ng-click="goSecond()">다음</a>
+</fieldset>

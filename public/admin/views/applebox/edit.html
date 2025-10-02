@@ -1,0 +1,255 @@
+
+<div oc-lazy-load="AppleboxEditModule">
+<div ng-controller="AppleboxEditCtrl">	
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>보관함</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>보관함정보</a>
+	            </li>
+	            <li class="active">
+	                <strong>보관함편집</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>보관함정보관리 
+	                        <small>* 는 수정할수 있는 항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+							<!--
+	                    	<div class="form-group"><label class="col-sm-2 control-label">Bluetooth Name</label>
+	
+	                            <label class="col-sm-2 control-label">{{item.bleName}}</label>
+	                        </div>
+	                        -->
+							
+							<div ng-if='false' class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*구매자</label>
+	
+	                            <div class="col-sm-10">
+	                        		<angucomplete-alt id="members"
+										placeholder="구매자를 선택해주세요."
+										pause="400"
+										selected-object="buyer"
+										remote-url="/admin/Buyer?companyName="
+										remote-url-data-field="data"
+										title-field="companyName"
+										minlength="1"
+										initial-value="buyer"
+										input-class="form-control form-control-small"/>
+					             </div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*yid</label>
+	
+	                            <div class="col-sm-10"><input type="number"  ng-model="item.yid" class="form-control" required></div>
+	                        </div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*이름</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.name" class="form-control" required></div>
+	                        </div>
+	                        
+							
+							<div ng-if='false' class="hr-line-dashed"></div>
+	                        <div ng-if='false' class="form-group"><label class="col-sm-2 control-label">*위치</label>
+	
+	                            <div class="col-sm-10"><input type="text"  placeholder="경도/위도 정보" ng-model="item.location" class="form-control" required></div>
+	                        </div>
+							<div class="form-group"><label class="col-sm-2 control-label">*주소</label>
+								<div class="col-sm-10">
+									<div class="row input-group m-b">
+										<div class="col-md-4"><input type="text" placeholder="" ng-model="item.addr.zipNo"
+																	class="form-control" readOnly></div>
+										
+										<div class="col-md-2"><input type="button" class="btn primary" ng-click="addrOpen()" value="우편번호검색"></div>
+										
+									</div>
+									<div class="input-group m-b">
+										<input type="hidden"  ng-model="item.addr"/>	
+										{{item.addr.roadAddrPart1 +', '+item.addr.detail+item.addr.roadAddrPart2}}
+									</div>
+									<div class="input-group m-b" style="width:100%">	
+										<input type="text" class="form-control" placeholder="도로명주소" ng-model="item.addr.roadAddrPart1" required readonly>
+									</div>
+									<div class="input-group m-b" style="width:100%">
+										<div class="row">
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="상세주소" ng-model="item.addr.detail" required>
+											</div>
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="참고항목" ng-model="item.addr.roadAddrPart2" required readonly>
+											</div>
+										</div>
+
+										
+									</div>
+									<div class="input-group m-b" style="width:100%">
+										<div class="row">
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="경도" ng-model="item.addr.longitude" required>
+											</div>
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="위도" ng-model="item.addr.latitude" required>
+											</div>
+										</div>
+
+										
+									</div>
+									
+								</div>
+								
+                        	</div>
+							
+							
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*연락처</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.hp" class="form-control" required></div>
+	                        </div>
+							<!--
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*sshHost</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.sshHost" class="form-control" required></div>
+	                        </div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*sshPort</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.sshPort" class="form-control" required></div>
+	                        </div>
+							-->
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*설치여부</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('yn')" ng-model='item.installed' >
+					                </select>
+					             </div>
+	                        </div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*사용유형</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('applebox.useType')" ng-model='item.useType' >
+					                </select>
+					             </div>
+							</div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*세탁서비스여부</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('yn')" ng-model='item.laundryFlag' >
+					                </select>
+					             </div>
+	                        </div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('applebox.status')" ng-model='item.status' >
+					                </select>
+					             </div>
+							</div>
+							<div class="form-group" ng-if="item.yid">
+	
+	                            <div class="col-sm-12">
+	                        		<button type="button" ng-click="choiceCol()" class="btn btn-primary">보관함 열추가</button>
+					             </div>
+					        </div>        
+					        <div class="form-group"  ng-if="item.yid">
+									<div class="col-sm-12">
+											<div id="child" style="position:relative;width:100%; height:800px;background:#eee; overflow:scroll">
+												<div ng-repeat="item in list" data-locker="{{item.box}}" ng-style="{ 'top':item.loc.top+'px', 'width':item.loc.getWidth()+'px', 'left':item.loc.left+'px', 'height':item.loc.getHeight()+'px', 'background-color':item.color }" ng-class="{cabinet_panel: item.box.yid}"  style="position: absolute; cursor: pointer;  border: 2px solid white;">
+													{{item.box.label}}
+													<div style="position:absolute; right:0px; bottom:0px;" ng-if="item.box.status=='B'">
+														<input type='text' ng-model='item.jumper' style="width:30px" name="jumper" required>
+														<input type='text' ng-model='item.serial' style="width:30px" name="serial" required>
+													</div>
+												</div>
+											</div>
+									</div>
+							</div>			
+
+	                        <div class="form-group">
+	                            <div class="col-sm-6 col-sm-offset-2">
+									<!--
+									<div class="checkbox checkbox-primary">
+										<input type="checkbox" ng-true-value="Y" aria-label="">
+										<label>락커도 수정</label>
+									</div>
+									-->
+	                                <button class="btn btn-primary" type="submit">확인</button>
+									<button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                
+	                            </div>
+	                        </div>
+	                    </form>
+					</div>
+					<div class="ibox-title">
+	                    <h5>기타설정정보
+	                        
+	                    </h5>
+	                    
+	                </div>
+					<div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmitSetting()" name="myForm1">
+	                    	
+	                        <div class="form-group"><label class="col-sm-2 control-label">*유심</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.usim" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*휴대폰</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.hp" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*serial</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.dev_serial" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*보드갯수</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.boardCnt" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*인터넷연결방법</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.networkType" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*설치일자</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="cdata.installDate" class="form-control"></div>
+							</div>
+							<div class="form-group"><label class="col-sm-2 control-label">*메모</label>
+	                            <div class="col-sm-10"><textarea class="form-control" ng-model="cdata.memo"></textarea></div>
+                            </div>
+							<div class="form-group">
+	                            <div class="col-sm-6 col-sm-offset-2">
+	                                <button class="btn btn-primary" type="submit">확인</button>
+									<button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                
+	                            </div>
+	                        </div>
+						</form>
+					</div>	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

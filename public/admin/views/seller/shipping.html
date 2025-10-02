@@ -1,0 +1,111 @@
+<div oc-lazy-load="SellerShippingModule">
+<div ng-controller="ShippingCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>판매사</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">Home</a>
+	            </li>
+	            <li>
+	                <a>E-commerce</a>
+	            </li>
+	            <li class="active">
+	                <strong page-title>배송비</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<!-- 
+	            	<div class="ibox-title">
+                            <h5>회원목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="seller.new" class="btn btn-primary btn-sm">판매사 생성</a>
+                            </div>
+                    </div>
+	             	-->
+	                <div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.key' placeholder="지역명" class="form-control" required>
+					                </div>
+					            </div>
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <input type="text"  ng-model='sform.name' placeholder="가격" class="form-control"  required>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <input type="text"  ng-model='sform.description' placeholder="표시내용" class="form-control"  required>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <input type="number"  ng-model='sform.sortOrder' placeholder="순서" class="form-control" required>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>생성하기</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	
+	                                        <th>지역명</th>
+				                            <th>가격</th>
+				                            <th>표시내역</th>
+				                            <th>순서</th>
+				                            
+				                            <th>액션</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+	                                        <td><input type="text"  ng-model='item.key' class="form-control"  required></td>
+	                                        <td><input type="text"  ng-model='item.name' class="form-control"  required></td>
+	                                        <td><input type="text"  ng-model='item.description' class="form-control"  required></td>
+	                                        <td><input type="number"  ng-model='item.sortOrder' class="form-control"  required></td>
+	                                        <td>
+                        						<button class="btn btn-white" ng-click="itemUpdate(item)">수정</button>
+                        						<button class="btn btn-white" ng-click="itemDelete(item)">삭제</button>
+                        					</td>
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

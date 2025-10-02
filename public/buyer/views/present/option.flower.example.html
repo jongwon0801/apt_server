@@ -1,0 +1,22 @@
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+       		<tr>
+
+                <th class="text-center">문구</th>
+                <th class="text-center">설명</th>
+           	</tr>
+        </thead>
+        <tbody>
+		<tr ng-repeat="data in list" style="cursor:pointer" ng-click="item.goods.option.rightText=data.m">
+       		<td style="width:50%;">{{data.m}}</td>
+           	<td><span  style='cursor:hand;'>{{data.d}}</span></td>
+           	
+           
+       	</tr>
+       	<tr ng-show="list.length==0">
+       		<td colspan=2 align=center>더이상 데이타가 없습니다.</td>
+       	</tr>
+      </tbody>
+     </table>
+</div>

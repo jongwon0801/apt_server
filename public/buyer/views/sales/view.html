@@ -1,0 +1,221 @@
+<div oc-lazy-load="GiftEventViewModule">
+<div ng-controller="GiftEventViewCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>상품권발송내역</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>선물관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>상품권발송내역</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+    <!-- gubun:A,B-->
+	<div ng-if="item.gubun!='C'" class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>상품정보</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div class="table-responsive">
+							<table class="table table-bordered">
+						    	
+							    <tbody>
+							    	<tr>
+							        	<td width=100>
+						               		<img ng-src="{{item.goods.thumbnail.thumbnailUrl}}" width=100 height=100>								
+						                </td>
+						                <td>
+						                	<div>
+							                	<div>[{{myCache.getValue('goods.kind',item.goods.kind)}}]</div>
+							               		<div>상품명:{{item.goods.title}}</div>
+							               		<div>가격: {{item.goods.salePrice | number}}원</div>
+							               		<div ng-if="item.goods.productType=='B'">{{item.goods.option.package.description}}</div>
+							               		
+							               		
+							               		<div ng-if="item.goods.kind=='A' &&  item.goods.productType=='C'">
+							               			리본문구 좌:{{item.goods.option.leftText}}<br>
+							               			리본문구 우:{{item.goods.option.rightText}}
+							               		</div>
+							               		
+							               		<div>유효일:{{item.goods.availDate | date:'yyyy-MM-dd'}}</div>
+							               		
+						               		</div>
+						               		
+						                </td>
+							         </tr>
+							         <tr>
+							         	<td colspan=2><div>주문수량 {{item.cnt}}개, 합계금액:{{item.goods.salePrice*item.cnt | number}}원</div></td>
+							         	
+							         </tr>
+							      </tbody>
+							  </table>
+						</div>	         
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>보내는사람</h5>
+	                </div>
+	                <div class="ibox-content" ng-if="item.member.memberType=='B'">
+						<div>회사명:{{item.member.customer.companyName}} </div>
+		         		<div>담당자:{{item.member.customer.managerName}}</div>
+		         		<div>연락처:{{item.member.customer.managerHp}}</div>
+	                </div>
+					<div class="ibox-content" ng-if="item.member.memberType!='B'">
+						<div>이름:{{item.member.name}} </div>
+		         		<div>연락처:{{item.member.hp}}</div>
+	                </div>
+					
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>받는사람</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div ng-repeat="user in item.gift">
+				         			{{user.to.name}} / {{user.to.hp}} 
+						</div>	         
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>메세지</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div>{{item.message.content}}</div>	         
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	    	<div class="col-lg-12" ng-if="item.gubun=='A'">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>배송정보</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div>주문일:{{item.order.regDate | date:'yyyy-MM-dd'}} </div>
+	                    <div ng-if="item.goods.productType=='B'">옵션:(10살초:{{item.goods.option.info.candal10}},1살초:{{item.goods.option.info.candal1}})</div>
+		         		<div>받는사람:{{item.order.shipping.to.name}}</div>
+		         		<div>휴대폰:{{item.order.shipping.to.hp}}</div>
+		         		<div>주소:{{item.order.shipping.addr.addr}} {{item.order.shipping.addr.addrDetail}}</div>
+		         		<div>예약배송일:{{item.order.deliveryDate | date:'yyyy-MM-dd'}}</div>
+		         		<div>배송비:{{item.order.shippingPrice | number}}원</div>	  
+		         		       
+	                </div>
+	            </div>
+	        </div>
+	     </div>
+	     <div class="row">
+	     	<div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>결제정보</h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+						<div class="row-md-12">
+					    	<div class="form-control">주문금액 {{item.shippingPrice+item.goods.salePrice*item.cnt | number}}원</div>
+					    	<div>주문방법:{{myCache.getValue('pay.type',item.payYn)}}</div>
+					    	<div class="form-control" ng-if="item.payYn=='Y'">{{myCache.getValue('pay.method',item.payMethod)}} 결제: {{item.fillPrice | number}}원</div>
+					    	
+					    </div>
+					    
+	                    
+		         	</div>
+	                
+	            </div>
+	       </div>  
+	    </div>
+	    
+	</div>
+    
+    <!--//<!-- gubun:A,B-->
+    
+    <div ng-if="item.gubun=='C'" class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>상품정보</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div class="table-responsive">
+							<table class="table table-bordered">
+						    	
+							    <tbody>
+							    	<tr ng-repeat="good in item.goods">
+							        	<td width=100>
+						               		<img ng-src="{{good.thumbnail.thumbnailUrl}}" width=100 height=100>								
+						                </td>
+						                <td>
+						                	<div>
+							                	<div>상품명:{{good.title}}</div>
+							               		<div>가격: {{good.salePrice | number}}원</div>
+						               		</div>
+						               		
+						                </td>
+							         </tr>
+							         <tr>
+							         	<td colspan=2><div>주문수량 {{item.goods.cnt}}개, 합계금액:{{item.salePrice | number}}원</div></td>
+							         	
+							         </tr>
+							      </tbody>
+							  </table>
+						</div>	         
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <div class="row">
+	    	<div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>배송정보</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div>주문일:{{item.order.regDate | date:'yyyy-MM-dd'}} </div>
+	                    <div>주소:{{item.order.shipping.addr.addr}} {{item.order.shipping.addr.addrDetail}}</div>
+		         		<div>예약배송일:{{item.order.deliveryDate | date:'yyyy-MM-dd'}}</div>
+		         		       
+	                </div>
+	            </div>
+	        </div>
+	     </div>
+	</div>
+</div>
+</div>

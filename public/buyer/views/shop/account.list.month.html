@@ -1,0 +1,39 @@
+<div oc-lazy-load="AccountMonthModule">
+<div ng-controller="AccountMonthCtrl">
+<div class="ibox-title">
+   <h5></h5>
+   <div class="ibox-tools">
+       <button class="btn btn-primary btn-sm" ng-click="itemNew()">{{$stateParams.sourceType=='A'?'설기':'재료'}} 검색</button>
+   </div>
+</div>
+
+<div class="ibox-content">
+  <div class="table-responsive">
+     <table class="table table-striped">
+        <thead>
+            <tr>
+               <th>이름</th>
+		       <th>이미지</th>
+		       <th>설명</th>
+		       <th>등록일</th>
+		       <th>수정</th>
+		     </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="item in list">
+              <td><span ng-click="itemOpen(item)">{{item.name}}</a></td>
+              <td><img ng-src="{{item.thumbnail.thumbnailUrl}}" alt="Description" /></td>
+              <td>{{item.description}}</td>
+              <td>{{item.regDate | date:medium}}</td>
+              <td><button type="button" class="btn btn-primary" ng-click="itemEdit(item)">수정</button></td>
+           </tr>
+           <tr ng-show="list.length==0">
+          	   <td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+           </tr>
+        </tbody>
+     </table>
+  </div>
+</div>
+
+</div>
+</div>

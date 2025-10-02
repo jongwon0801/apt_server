@@ -1,0 +1,36 @@
+{
+  "name": "node-locker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.3.5",
+    "cors": "^2.8.5",
+    "dateformat": "^5.0.3",
+    "debug": "~2.2.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "express-domain-middleware": "^0.1.0",
+    "express-markdown": "^0.0.6",
+    "express-session": "^1.18.2",
+    "express-winston": "^4.2.0",
+    "fcm-push": "^1.1.3",
+    "gm": "^1.25.1",
+    "imagemagick": "^0.1.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.9.0",
+    "multer": "^2.0.2",
+    "mysql": "^2.15.0",
+    "node-gcm": "^1.1.4",
+    "request": "^2.88.2",
+    "serve-favicon": "^2.5.0",
+    "serve-index": "^1.9.1",
+    "underscore": "^1.13.7",
+    "urlencode": "^2.0.0",
+    "winston": "^3.18.1",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}

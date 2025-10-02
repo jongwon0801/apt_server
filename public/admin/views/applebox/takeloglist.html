@@ -1,0 +1,155 @@
+<div oc-lazy-load="TakeLogModule">
+<div ng-controller="TakeLogCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>수령내역</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>보관함</a>
+	            </li>
+	            <li class="active">
+	                <strong>수령내역</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>수령내역</h5>
+                            
+                    </div>
+	            
+	                <div class="ibox-content">
+						<div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2" ng-if="false">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.uuid' placeholder="uuid" class="form-control">
+					                </div>
+					            </div>
+								<div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.usage')" ng-model='sform.usage'>
+					                		<option value=''>용도선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.toHp' placeholder="핸드폰(받는이)" class="form-control">
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.saveHp' placeholder="핸드폰(보낸이)" class="form-control">
+					                </div>
+								</div>
+								<!--
+								<div class="col-sm-3">
+										<div class="form-group">
+												
+												<input type="text"  name="regDate" ng-model='sform.regDate' placeholder="찾은날짜" class="form-control">
+										</div>
+								</div>
+								-->
+								<div class="col-sm-3">
+										<div class="form-group">
+											<div id="daterange" class="form-control">
+													<i class="fa fa-calendar"></i>
+													<span></span> <b class="caret"></b>
+											</div>
+										</div>
+									</div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+						<button ng-click="exportExcel()">엑셀파일로 저장</button>
+
+                                <button id="btnExport" name="btnExport" style="display:none" ng-json-export-excel data="list1" filename="'수령로그'"
+                                report-fields="{boxName: '보관함명', saveName: '보관자명',saveHp:'보관자연락처', toHp:'받는자연락처',saveDate:'보관일자'}">Json Export</button>
+                                
+
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+											<th>보관함</th>
+	                                        <th>용도</th>
+                                            <th>보낸는이</th>
+                                            <th>수령자</th>
+											<th>수령일</th>
+											<th>단말기</th>
+											<th>추적</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+											<!--
+											<td style='vertical-align:middle'><a ui-sref="applebox.edit(item)">{{item.yid}}</a></td>
+											-->
+											<td style='vertical-align:middle'><a ui-sref='applebox.view(item)'>{{item.boxName}} {{item.label}} {{item.toDong}}-{{item.toHo}}</a></td>
+                                            <td style='vertical-align:middle'>{{myCache.getValue('locker.usage',item.usage)}}</td>
+                                            <td style='vertical-align:middle'><a ui-sref="applebox.lockerlist({saveHp:item.saveHp})">{{item.saveHp|tel}}</a>(<a ui-sref="applebox.lockerlist({yid:item.yid,saveName:item.saveName})">{{item.saveName}}</a>)</td>
+                                            <td style='vertical-align:middle'><a ui-sref="applebox.lockerlist({toHp:item.toHp})">{{item.toHp|tel}}</a></td>
+											<td style='vertical-align:middle'><a ui-sref="applebox.lockerlist({saveDate:toLocalDateString(item.saveDate),yid:item.yid,toHp:item.toHp})">{{item.regDate | date:'medium'}}</a></td>
+											<td style='vertical-align:middle'>{{item.memberSq==0 ?'키오스크':'핸드폰'}}</td>
+											<!--
+											<td style='vertical-align:middle'><span ng-if="item.usage=='B'">조회</span></td>
+											-->
+											<td style='vertical-align:middle'><button class="btn-primary" ng-click="onTraceView({uuid:item.uuid})">추적</button></td>
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan='10' align='center'>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                            </table>
+                        </div>
+						<div class="row">
+						
+						    <div class="col-md-6 col-md-offset-3">
+						    	<pagination 
+						    	ng-change="pageChanged(currentPage)"
+						    	total-items="totalItems" 
+						    	ng-model="currentPage"
+						    	next-text="다음"
+						    	previous-text="이전" 
+						    	first-text="처음"
+						    	last-text="마지막"
+						    	max-size="maxSize" 
+						    	items-per-page="display"
+						    	class="pagination-sm" 
+						    	boundary-links="true" 
+						    	rotate="false" 
+						    	num-pages="numPages"></pagination>
+						    </div>
+						</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

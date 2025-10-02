@@ -1,0 +1,132 @@
+<div oc-lazy-load="OrderViewModule">
+<div ng-controller="OrderViewCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>주문상세</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>주문관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>주문상세</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>상품정보</h5>
+	                </div>
+	                <div class="ibox-content">
+	
+	                    <div class="table-responsive">
+							<table class="table table-bordered">
+						    	
+							    <tbody>
+							    	<tr>
+							        	<td width=100>
+						               		<img ng-src="{{item.goods.thumbnail.thumbnailUrl}}" width=100 height=100>								
+						                </td>
+						                <td>
+						                	<div>
+							                	<div>[{{myCache.getValue('goods.kind',item.goods.kind)}}]</div>
+							               		<div>상품명:{{item.goods.title}}</div>
+							               		<div>가격: {{item.goods.salePrice | number}}원</div>
+							               		<div ng-if="item.goods.productType=='B'">
+							               			{{item.goods.option.package.description}}<br>
+							               			10살초:{{item.goods.option.info.candal10}}개,1살초:{{item.goods.option.info.candal1}}개
+							               		</div>
+							               		<div ng-if="item.goods.productType=='C'">
+							               			리본문구 좌:{{item.goods.option.leftText}}<br>
+							               			리본문구 우:{{item.goods.option.rightText}}
+							               		</div>
+							               		
+						               		</div>
+						               		
+						                </td>
+						                
+						                <td>
+						                	<div class="col-md-6">
+						                		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('order.status')" ng-model='item.status'>
+							                	</select>
+							                </div>	
+							                <button type='button' class='btn btn-primary' ng-click='updateStatus()'>수정</button>
+						                
+						                </td>
+						                
+							         </tr>
+							         <tr>
+							         	<td colspan=3>
+							         		총주문액 : {{item.price+item.shippingPrice|number}}원
+							         	</td>
+							         </tr>
+							         
+							         
+							      </tbody>
+							  </table>
+						</div>	         
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	   <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>주문자</h5>
+	                </div>
+	                <div class="ibox-content">
+						<div>회사명:{{item.customer.companyName}} </div>
+		         		<div>담당자:{{item.customer.managerName}}</div>
+		         		<div>연락처:{{item.customer.managerHp}}</div>
+		         			       
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	                <div class="ibox-title">
+	                    <h5>배송정보</h5>
+	                </div>
+	                <div class="ibox-content">
+						<div>주문일:{{item.regDate | date:'yyyy-MM-dd'}} </div>
+		         		<div>수취인:{{item.shipping.to.name}}/{{item.shipping.to.hp}}</div>
+		         		<div>주소:{{item.shipping.addr.addr}} {{item.shipping.addr.addrDetail}}</div>
+		         		<div>예약배송일:{{item.deliveryDate | date:'yyyy-MM-dd'}}</div>
+		         		<div>배송비:{{item.shippingPrice | number}}원</div>	  
+			         		       
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-lg-12">
+	        	<label>관리자메모</label>
+	        	<textarea class='form-control' ng-model='item.memo'></textarea>
+	        </div>
+	    </div>    	
+	    <div class="row text-center">
+	    	<div class="col-lg-12">
+		    	<button type='button' class='btn btn-primary' ng-click="trySave()">변경하기</button>
+		    	<button type='button' class='btn btn-primary' ng-click="print()" ng-if='false'>프린트하기</button>
+		    	<button type='button' class='btn btn-primary' ng-click="back()" ng-if='false'>목록으로 이동</button>
+	    	</div>
+	    </div>
+	    
+	    
+	</div>
+</div>
+</div>

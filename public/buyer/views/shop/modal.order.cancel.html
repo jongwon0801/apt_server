@@ -1,0 +1,19 @@
+<form  role="form" id="myForm" ng-submit="ok()">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+		<h4 class="modal-title">주문취소</h4>
+	</div>
+	<div class="modal-body">
+			<div class="form-group">
+    
+	    		<textarea class="form-control" ng-model="item.cancelDesc" placeholder="취소사유"></textarea>
+  			</div>
+		
+	</div>
+
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-success">주문취소</button>
+	</div>
+
+</form>
+

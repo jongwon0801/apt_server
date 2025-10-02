@@ -1,0 +1,138 @@
+<div oc-lazy-load="OrderSuperListModule">
+<div ng-controller="OrderSuperListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>주문관리</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>주문내역</a>
+	            </li>
+	            <li class="active">
+	                <strong>주문목록 </strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>주문목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="shop.orderedit" class="btn btn-primary btn-sm">테스트 주문 등록</a>
+                            </div>
+                    </div>
+					<div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                	<select class="form-control" ng-model='sform.stype'>
+											<option value=''>검색대상</option>
+					                		<option value='A'>주문자</option>
+					                		<option value='B'>수취인</option>
+					                		<option value='C'>상품명</option>
+				                        </select>
+					                </div>
+					            </div>
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input class="form-control" type='text' ng-model='sform.sword'>
+					                </div>
+					            </div>
+					           
+					            <div class="col-sm-3">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	
+	                                        <th>주문일자</th>
+				                            <th>주문금액</th>
+                                            <th>수령일자</th>
+				                            <th>배달시작</th>
+                                            <th>배달완료</th>
+				                            <th>주문취소</th>
+                                            <th>상태</th>
+				                            
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+	                                        <td style="vertical-align:middle"><a ui-sref='shop.orderview(item)'>{{item.regDate | date:'yyyy-MM-dd HH:mm'}}</a></td>
+	                                        <td style="vertical-align:middle">{{item.totalPrice|currency}}</td>
+	                                        <td style="vertical-align:middle">{{item.shippingEDate | date:'yyyy-MM-dd HH:mm'}}</td>
+	                                        <td style="vertical-align:middle"><button type='button' class='btn btn-white' ng-click="updateToShipping(item)" ng-disabled="item.status!='A'">배달시작</button></td>
+	                                        <td style="vertical-align:middle"><button type='button' class='btn btn-white' ng-click="updateToShipped(item)"  ng-disabled="item.status!='B'">배달완료</button></td>
+	                                        <td style="vertical-align:middle"><button type='button' class='btn btn-white' ng-click="cancelOrder(item)" ng-disabled="item.status=='D' || item.status=='E'">주문취소</button></td>
+	                                        <td style="vertical-align:middle">
+	                                        	<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('order.status.C')" ng-model='item.status' disabled>
+							                	</select>
+	                                        </td>
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=6 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

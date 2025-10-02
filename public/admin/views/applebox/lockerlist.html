@@ -1,0 +1,181 @@
+<div oc-lazy-load="AppleboxLockerListModule">
+    <div ng-controller="AppleboxLockerListCtrl">
+    
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>보관함</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a ui-sref="home">홈</a>
+                    </li>
+                    <li>
+                        <a>보관함</a>
+                    </li>
+                    <li class="active">
+                        <strong>보관 목록</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+        
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                                <h5>보관 목록</h5>
+                                
+                        </div>
+                    
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <form class="m-t" role="form" ng-submit="formSubmit()">
+                                    
+                                    
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <input type="text"  ng-model='sform.toHp' placeholder="받는이폰" class="form-control">
+                                                    </div>
+                                            </div>        
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                    <input type="text"  ng-model='sform.toName' placeholder="받는이명" class="form-control">
+                                                </div>
+                                            </div>    
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                    <input type="text"  ng-model='sform.saveHp' placeholder="보낸이폰" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <input type="text"  ng-model='sform.saveName' placeholder="보낸이명" class="form-control">
+                                                </div>
+                                            </div>    
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <input type="text"  ng-model='sform.yid' placeholder="보관함번호" class="form-control">
+                                                    </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <input type="text"  ng-model='sform.pwd' placeholder="비빌번호" class="form-control">
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                            
+                                                            <select class="form-control" ng-options="code.key as code.name for code in dwheres " ng-model='sform.dwhere'>
+                                                                    
+                                                            </select>
+                                                    </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                            
+                                                        <input type="text"  name="saveDate" ng-model='sform.saveDate' placeholder="보관날짜" class="form-control">
+                                                    </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.status')" ng-model='sform.status'>
+                                                    <option value=''>상태선택</option>
+                                                </select>
+                                                </div>
+
+                                            </div>     
+                                            
+                                            <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                    <button class='btn btn-primary' type='submit'>검색</button>
+                                                    </div>
+                                                </div>             
+                                    </div>
+                                    
+                                    
+                                    <!-- 
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div id="daterange" class="form-control">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <span></span> <b class="caret"></b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     -->
+                                    
+                                </form>
+                            </div>
+               
+        
+            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+        
+                                                <th>보관함</th>
+                                                <th>위치</th>
+                                                <th>보낸이</th>
+                                                <th>받는이</th>
+                                                <th>보관일</th>
+                                                <th>상태</th>
+                                                <th>추적</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in list">
+                                                <td><a ui-sref='applebox.view(item)'>{{item.yid}}</a></td>
+                                                <td style='vertical-align:middle'><a ng-click='viewLog(item)'>{{item.label}}</a></td>
+                                                <td style='vertical-align:middle'>{{item.saveHp}}({{item.saveName}})</td>
+                                                <td style='vertical-align:middle'>{{item.toHp|tel}}</td>
+                                                <td style='vertical-align:middle'>{{item.saveDate | date:'medium'}}</td>
+                                                <td style='vertical-align:middle'>
+                                                        <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.status')" ng-model='item.status' disabled>
+                                                        </select>
+                                                    
+                                                </td>
+                                                <td style='vertical-align:middle'><button class="btn-primary" ng-click="onTraceView({uuid:item.uuid})">추적</button></td>
+                                                
+                                            </tr>
+                                            <tr ng-show="list.length==0">
+                                                <td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                            
+                                <div class="col-md-6 col-md-offset-3">
+                                    <pagination 
+                                    ng-change="pageChanged(currentPage)"
+                                    total-items="totalItems" 
+                                    ng-model="currentPage"
+                                    next-text="다음"
+                                    previous-text="이전" 
+                                    first-text="처음"
+                                    last-text="마지막"
+                                    max-size="maxSize" 
+                                    items-per-page="display"
+                                    class="pagination-sm" 
+                                    boundary-links="true" 
+                                    rotate="false" 
+                                    num-pages="numPages"></pagination>
+                                </div>
+                            </div>
+                                    
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </div>
+    </div>
+    </div>

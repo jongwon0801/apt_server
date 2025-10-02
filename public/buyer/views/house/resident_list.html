@@ -1,0 +1,131 @@
+<div oc-lazy-load="HouseResidentListModule">
+    <div ng-controller="ResidentListCtrl">
+    
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>세대원정보 </h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a ui-sref="home">홈</a>
+                    </li>
+                    <li>
+                        <a>보관함</a>
+                    </li>
+                    <li class="active">
+                        <strong>세대원리스트</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+        
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                                <h5>세대원리스트</h5>
+                                <div class="ibox-tools">
+                                        <a ui-sref="applebox.residentedit(sform)" class="btn btn-primary btn-sm">세대원 등록</a>
+                                </div>
+                        </div>
+                    
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <form class="m-t" role="form" ng-submit="formSubmit()">
+
+                                        
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            
+                                            <input type="text"  ng-model='sform.dong' placeholder="yid" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            
+                                            <input type="text"  ng-model='sform.dong' placeholder="동" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            
+                                            <input type="text"  ng-model='sform.ho' placeholder="호" class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <button class='btn btn-primary' type='submit'>검색</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>동</th>
+                                                <th>호</th>
+                                                <th>안락처</th>
+                                                <th>이름</th>
+                                                <th>태그아이디</th>
+                                                <th>상태</th>
+                                                <th>수정일</th>
+                                                <th>세대등록</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in list">
+                                                <!--
+                                                <td style='vertical-align:middle'><a ui-sref="applebox.edit(item)">{{item.yid}}</a></td>
+                                                -->
+                                                <td style='vertical-align:middle'><a ui-sref="house.residentedit(item)">{{item.dong}}</a></td>
+                                                <td style='vertical-align:middle'>{{item.ho}}</td>
+                                                <td style='vertical-align:middle'>{{item.hp}}</td>
+                                                <td style='vertical-align:middle'>{{item.name}}</td>
+                                                <td style='vertical-align:middle'>{{item.tagid}}</td>
+                                                <td style='vertical-align:middle'>{{myCache.getValue('resident.status',item.status)}}</td>
+                                                <td style='vertical-align:middle'>{{item.modDate}}</td>
+                                                <td style='vertical-align:middle'><a  ui-sref="house.residentedit({yid:sform.yid,dong:sform.dong,ho:sform.ho})">등록</a></td>
+                                                
+                                            </tr>
+                                            <tr ng-show="list.length==0">
+                                                <td colspan='8' align='center'>더이상 데이타가 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                            
+                                <div class="col-md-6 col-md-offset-3">
+                                    <pagination 
+                                    ng-change="pageChanged(currentPage)"
+                                    total-items="totalItems" 
+                                    ng-model="currentPage"
+                                    next-text="다음"
+                                    previous-text="이전" 
+                                    first-text="처음"
+                                    last-text="마지막"
+                                    max-size="maxSize" 
+                                    items-per-page="display"
+                                    class="pagination-sm" 
+                                    boundary-links="true" 
+                                    rotate="false" 
+                                    num-pages="numPages"></pagination>
+                                </div>
+                            </div>
+                                    
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </div>
+    </div>
+    </div>

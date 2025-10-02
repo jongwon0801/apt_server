@@ -1,0 +1,133 @@
+<div oc-lazy-load="SnackGoodsEditModule">
+<div ng-controller="SnackGoodsEditCtrl">
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>간식상품</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>간식데이</a>
+	            </li>
+	            <li class="active">
+	                <strong>간식데이상품</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>회원 수정 
+	                        <small>* 는 필수항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="form">
+	                         <div class="form-group"><label class="col-sm-2 control-label">*상품유형</label>
+		                            <div class="col-sm-10">
+                                            <select class="form-control" ng-options="code.gubun as code.goodsTitle  for code in pkgList" ng-model='item.gubun'>
+                                            </select>
+                                    </div>
+		                     </div>
+		                    <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*상품가격</label>
+		                            <div class="col-sm-10">
+                                            <input type="number" class="form-control" ng-model="item.price" required>
+                                    </div>
+		                     </div>
+	                        
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*배송예정일</label>
+		                            <div class="col-sm-10">
+                                            <input id="datetimepicker" type="text" ng-model="item.shippingDate" required>
+                                    </div>
+		                     </div>
+	                        
+                            
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">*상품구성</label>
+	
+	                            <div class="col-sm-10">
+                                    
+                                    <!--
+                                    <ul data-as-sortable="board.dragControlListeners" data-ng-model="items">
+                                        <li ng-repeat="item in items" data-as-sortable-item>
+                                            <div data-as-sortable-item-handle><div style="margin:10px;width:100px; height:100px; background:#eee">{{$index}}</div></div>
+                                        </li>
+                                     </ul>
+                                     
+                                     -->
+                                     <!--
+                                     <div id='grid-container'>
+                                         <div class='row' as-sortable="sortableOptions" ng-model="items">
+                                         <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12" ng-repeat="good in items" style="height: 350px;">
+                                            <div class="ibox">
+                                                {{$index}}lsdflsdlfjlsdjljsdl
+                                            </div>
+                                         </div>
+                                        </div>
+                                     </div>    
+                                     -->
+                                     <div class="row">
+                                         <div class="col-sm-12">
+                                             <button type='button' class="btn btn-white" ng-click="chooseGoods()">상품추가</button>
+                                         </div>
+                                     </div>
+                                     <div id="grid-container">
+                                        <div class="row" as-sortable="sortableOptions" ng-model="items">
+                                            <div class="col-md-12 text-center" ng-repeat="good in item.goods">
+                                                <div style="" as-sortable-item>
+                                                    <!--
+                                                    <div as-sortable-item-handle style="height:50px;background:gray;">{{item.name}}</div>
+                                                    -->
+                                                    <div cla ss="ibox" as-sortable-item-handle>
+                                                        <div class="ibo x-content product-box">
+                                                            
+                                                            <div id="image" ng-click="onView(good)" c lass="product-imitation"  style="cursor:pointer;margin-top:10px;">
+                                                                
+                                                                <img id="productImage" wid th="200" hei ght="200" style="max-height: 240px; margin:0 auto;" ng-src="{{good.thumbnail.thumbnailUrl}}" class="img-responsive">
+                                                                
+                                                            </div>
+                                                        
+                                                            <div class="product-desc">
+                                                                <span class="product-price">
+                                                                    {{good.salePrice|number}} 원
+                                                                </span>
+                                                                <button type='button' class="btn btn-white pull-right" ng-click="onGoodsDelete($index)">삭제</button>
+                                                                {{good.title}}
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div>
+
+                                </div>
+	                        </div>
+	                        
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                            <div class="col-sm-4 col-sm-offset-2">
+	                                <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                <button class="btn btn-primary" type="submit">저장</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

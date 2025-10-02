@@ -1,0 +1,73 @@
+<div oc-lazy-load="HouseEditModule">
+        <div ng-controller="HouseEditCtrl">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>세대원</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a ui-sref="home">홈</a>
+                        </li>
+                        
+                        <li class="active">
+                            <strong>세대원</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+            
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>세대원
+                                    <small>* 는 필수항목입니다.</small>
+                                </h5>
+                                
+                            </div>
+                            <div class="ibox-content">
+                                <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+                                    <div class="form-group"><label class="col-sm-2 control-label">*동</label>
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.dong" class="form-control" readOnly></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*호</label>
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.ho" class="form-control" readOnly></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*이름</label>
+            
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.hp" class="form-control"></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*연락처</label>
+            
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.name" class="form-control"></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*패스워드</label>
+            
+                                        <div class="col-sm-10"><input type="text"  ng-model="item.pwd" minlength="4"></div>
+                                    </div>
+                                    
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+                                            <button class="btn btn-primary" type="submit">확인</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>

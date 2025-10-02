@@ -1,0 +1,29 @@
+<fieldset  ng-controller="CakeSourceCtrl">
+    <h2>꾸미기선택</h2>
+    
+    
+    <uib-tabset id="myTab">
+				    
+	    <uib-tab active="tabs[0].active" select="item.cakes.packageYn='N'">
+	      <uib-tab-heading>
+	        <i class="glyphicon glyphicon-bell"></i> 설기, 재료 개별 선택
+	      </uib-tab-heading>
+	      <div ng-include="'views/goods/wizard/source.html'"></div>
+	    </uib-tab>
+	    <uib-tab  active="tabs[1].active" select="item.cakes.packageYn='Y'">
+	      <uib-tab-heading>
+	        <i class="glyphicon glyphicon-bell"></i> 설기+재료 팩키지 선택 
+	      </uib-tab-heading>
+	      	<div ng-include="'views/goods/wizard/package.html'"></div>
+	    </uib-tab>
+	    
+	  </uib-tabset>
+   
+    
+    <div>
+	    <a ui-sref="goods.edit.step_two" class="btn btn-default">이전으로</a>
+	    <button class="btn btn-primary" ng-click="trySave()">저장하기</button>
+    </div>
+            	
+</fieldset>
+

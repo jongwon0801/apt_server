@@ -1,0 +1,40 @@
+<form  role="form" id="myForm" ng-submit="formSubmit()">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+		<h4 class="modal-title">{{item.groupName}}</h4>
+	</div>
+	<div class="modal-body">		
+  			<div class="table-responsive">
+                <div class="table-responsive">
+                     <table class="table table-striped">
+                         <thead>
+                         <tr>
+
+                             <th>선택</th>
+                             <th>이름</th>
+                             <th>핸드폰</th>
+                             <th>생일</th>
+                             
+                         </tr>
+                         </thead>
+                         <tbody>
+                         <tr ng-repeat="buddy in item.buddyList">
+                             <td><input type="checkbox"  ng-model="buddy.checked" ng-true-value="'Y'" ng-false-value="'N'" class="i-checks" name="input[]"></td>
+                             <td>{{buddy.name}}</td>
+                             <td>{{buddy.hp}}</td>
+                             <td>{{buddy.birthDay}}</td>
+                         </tr>
+                         </tbody>
+                     </table>
+             </div>
+       
+		
+		
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" ng-click='close()'>확인</button>
+	</div>
+</form>
+
+

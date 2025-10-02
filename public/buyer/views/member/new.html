@@ -1,0 +1,110 @@
+<div oc-lazy-load="MemberNewModule">
+<div ng-controller="NewCtrl">
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>Basic Form</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a href="index.html">Home</a>
+	            </li>
+	            <li>
+	                <a>Forms</a>
+	            </li>
+	            <li class="active">
+	                <strong>회원가입</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>회원 가입
+	                        <small>* 는 필수항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+	                        <div class="form-group"><label class="col-sm-2 control-label">*아이디</label>
+		                            <div class="col-sm-10"><input type="text"  ng-model="item.userId" class="form-control" required></div>
+		                     </div>
+		                     <div class="hr-line-dashed"></div>
+		                    <div class="form-group"><label class="col-sm-2 control-label">*패스워드</label>
+		                    	<div class="col-sm-10">
+					                <input class="form-control" type="password" id="password" name="password" ng-model="item.password" ng-minlength="8" ng-maxlength="20" placeholder="패스워드" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  />
+					   				<span ng-show="myForm.password.$error.required && myForm.password.$dirty">required</span>
+					   				<span ng-show="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+					   				<span ng-show="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+					   			</div>	
+				            </div>
+				            <div class="hr-line-dashed"></div>
+				            <div class="form-group"><label class="col-sm-2 control-label">*패스워드확인</label>
+		                    	<div class="col-sm-10">
+					                <input class="form-control" type="password" id="password_c" name="password_c" ng-model="item.password_c" placeholder="패스워드확인" valid-password-c required  />
+					   				<span ng-show="myForm.password_c.$error.required && myForm.password_c.$dirty">Please confirm your password.</span>
+					   				<span ng-show="!myForm.password_c.$error.required && myForm.password_c.$error.noMatch && myForm.password.$dirty">Passwords do not match.</span>
+					   			</div>
+				            </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*전화번호</label>
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.hp" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*앱아이디</label>
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.regId" class="form-control"></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*이메일</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.email" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*사용자유형</label>
+	
+	                            <div class="col-sm-2">
+	                            	<select class="form-control" ng-options="code.key as code.name for code in myCache.get('member.memberType')" ng-model='item.memberType'>
+	                            	</select>
+								</div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+								
+	                            <div class="col-sm-2">
+	                            
+	                            	<select class="form-control" ng-options="code.key as code.name for code in myCache.get('member.status')" ng-model='item.status'>
+	                            	</select>
+	                            	
+								</div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*매체</label>
+								
+	                            <div class="col-sm-2">
+	                            
+	                            	<select class="form-control" ng-options="code.key as code.name for code in myCache.get('member.media')" ng-model='item.media'>
+	                            	</select>
+	                            	
+								</div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                            <div class="col-sm-4 col-sm-offset-2">
+	                                <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                <button class="btn btn-primary" type="submit">확인</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

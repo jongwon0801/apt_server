@@ -1,0 +1,81 @@
+<form role="form" ng-submit="formSubmit()">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+	<h4 class="modal-title">간식상품 선물보내기</h4>
+</div>
+<div class="modal-body">	
+	<div class="container-fluid">
+         <div class="row">
+			<div class="col-md-2">
+                <label>이벤트명</label> 
+            </div>
+            <div class="col-md-10">
+                <input type='text' class='form-control' ng-model="item.title" placeholder="4월 간식데이" required>
+            </div>
+        </div>
+        <div class="row">
+			<div class="col-md-2">
+                <label>배송지</label>
+			</div>    
+            <div class="col-md-10">
+                <td>[{{item.shipping.addr.zipNo}}] {{item.shipping.addr.addr}} {{item.shipping.addr.addrDetail}}</td>
+            </div>
+	    </div>    
+        
+         <div class="row">
+			<div class="col-md-2">
+                <label>배송예정일</label>
+			</div>    
+            <div class="col-md-10">
+                <td>{{item.snackGoods.shippingDate | date:'fullDate'}}</td>
+            </div>
+	    </div>
+        <div class="row">
+			<div class="col-md-2">
+                <label>수량</label> 
+            </div>
+            <div class="col-md-10">
+                <input type='number' class='form-control' ng-model="item.cnt" required>
+            </div>
+        </div>        
+        <div class="row">
+			<div class="col-md-2">
+                <label>총가격</label> 
+            </div>
+            <div class="col-md-10">
+                <input type='number' class='form-control' ng-model="item.salePrice" required>
+            </div>
+        </div>            
+        <div class="row">
+			<div class="col-md-2">
+                <label>상품구성</label>
+			</div>    
+            
+	    </div>
+		<div class="row">
+			<div class="col-md-3" ng-repeat="good in item.snackGoods.goods" style="height: 350px;">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        
+                        <div id="image" ng-cl ick="onView(good)" c lass="product-imitation"  style="cursor:pointer;margin-top:10px;">
+                            
+                            <img id="productImage" wid th="200" hei ght="200" style="max-height: 240px; margin:0 auto;" ng-src="{{good.thumbnail.thumbnailUrl}}" class="img-responsive">
+                            
+                        </div>
+                    
+                        <div class="product-desc">
+                            {{good.title}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+               
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button type="submit" class="btn btn-success">선물보내기</button>
+</div>
+    
+</form>

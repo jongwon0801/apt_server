@@ -1,0 +1,126 @@
+<div oc-lazy-load="OrderPayListModule">
+        <div ng-controller="OrderPayListCtrl">
+        
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>주문</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a ui-sref="home">홈</a>
+                        </li>
+                        <li>
+                            <a>주문</a>
+                        </li>
+                        <li class="active">
+                            <strong>주문 목록</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+            
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+            
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                    <h5>주문 목록</h5>
+                                    
+                            </div>
+                        
+                            <div class="ibox-content">
+                                <div class="row m-b-sm m-t-sm">
+                                    <form class="m-t" role="form" ng-submit="formSubmit()">
+                                        <!--
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                
+                                                <input type="text"  ng-model='sform.name' placeholder="이름" class="form-control">
+                                            </div>
+                                        </div>
+                                        -->
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                
+                                                    <select class="form-control" ng-options="code.shopSq as code.companyName for code in shopList" ng-model='sform.shopSq' >
+                                                        <option value=''>전체</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div id="daterange" class="form-control"  style="min-width: 220px;">
+                                                            <i class="fa fa-calendar"></i>
+                                                            <span></span> <b class="caret"></b>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <button class='btn btn-primary' type='submit'>검색</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                   
+            
+                
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                        <th align='right' colspan=5>총결제금액 : {{totalPrice | number}}원</th>
+                                                        
+                                                </tr>
+                                                <tr>
+                                                    <th>결제일</th>
+                                                    <th>카드금/건</th>
+                                                    <th>무통장/건</th>
+                                                    <th>현금/건</th>
+                                                    <th>핸드폰/건</th>
+                                                    <th>총건수</th>
+                                                    <th>금액총합</th>
+                                                    
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <th>{{total.date}}</th>
+                                                        <th>{{total.cardAmount|number}}/{{total.cardCnt}}</th>
+                                                        <th>{{total.passbookAmount|number}}/{{total.passbookCnt}}</th>
+                                                        <th>{{total.moneyAmount|number}}/{{total.moneyCnt}}</th>
+                                                        <th>{{total.phoneAmount|number}}/{{total.phoneCnt}}</th>
+                                                        <th>{{total.totalCnt}}건</th>
+                                                        <th>{{total.totalAmount|number}}원</th>
+                                                        
+                                                    </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in list">
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10)})">{{item.date}}</a></td>
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10),payMethod:'A'})">{{item['카드']|number}}/{{item['카드건']|number}}</a></td>
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10),payMethod:'B'})">{{item['무통장']|number}}/{{item['무통장건']|number}}</a></td>
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10),payMethod:'C'})">{{item['현금']|number}}/{{item['현금건']|number}}</a></td>
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10),payMethod:'D'})">{{item['핸드폰']|number}}/{{item['핸드폰건']|number}}</a></td>
+                                                    <td style='vertical-align:middle'><a ui-sref="laundry.thingslist({startDate:item.date.substring(0,10),endDate:item.date.substring(0,10),mode:'1'})">{{item['cnt']|number}}</a></td>
+                                                    <td style='vertical-align:middle'>{{item.totalPrice|number}}</td>
+                                                    
+                                                </tr>
+                                                
+                                            </tbody>
+                                    </table>
+                                </div>
+                                
+                                        
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            </div>
+        </div>
+        </div>

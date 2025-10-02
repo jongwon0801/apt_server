@@ -1,0 +1,33 @@
+<div class="table-responsive" style="margin-top:10px;">
+	<table class="table table-bordered">
+    	<thead>
+        	<tr>
+				<th>단구성</th>
+      			<th>설기</th>
+      			<th>재료</th>
+	     	</tr>
+	    </thead>
+	    <tbody>
+	    	<tr ng-repeat="step in item.cakes.stepList">
+	        	<td rowspan="{{item.cakes.stepList.length}}" ng-if="$index==0" style="vertical-align: middle;"">
+               		<select id="steps" class="form-control" ng-change="stepChanged()" ng-model="item.cakes.steps" convert-to-number>
+               			  <option value="3">3단</option>
+					      <option value="2">2단</option>
+					      <option value="1">1단</option>
+					</select>
+					
+                </td>
+                <td>
+               		<select class="form-control" ng-options="code.cakeSourceSq as code.name for code in sourceAList" ng-model='step.backSource'>
+               			<option value=''>선택안함(사용자가 지정)</option>
+			   		</select>
+                </td>
+                <td>
+               		<select class="form-control" ng-options="code.cakeSourceSq as code.name for code in sourceBList" ng-model='step.source'>
+               			<option value=''>선택안함(사용자가 지정)</option>
+					</select>
+	            </td>
+	         </tr>
+		</tbody>
+	</table>
+</div>
