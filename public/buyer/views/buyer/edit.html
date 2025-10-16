@@ -1,0 +1,123 @@
+
+<div oc-lazy-load="BuyerEditModule">
+<div ng-controller="BuyerEditCtrl">	
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>구매자</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>구매자정보</a>
+	            </li>
+	            <li class="active">
+	                <strong>구매자편집</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>구매자정보관리 
+	                        <small>* 는 수정할수 있는 항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+	                    	
+	                        
+	                        <div class="form-group"><label class="col-sm-2 control-label">*회사명</label>
+	                            <div class="col-sm-10"><input type="text"  placeholder="회사명" ng-model="item.companyName" class="form-control" required></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">담당택배사</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.shopSq as code.companyName for code in parcelList" ng-model='item.parcelSq'  ng-readonly="true">
+					                </select>
+					             </div>
+					        </div>
+							<div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">담당세탁소</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.shopSq as code.companyName for code in laundryList" ng-model='item.laundrySq' ng-readonly="true">
+					                </select>
+					             </div>
+					        </div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*담당자</label>
+	
+	                            <div class="col-sm-10"><input type="text"  placeholder="담당자" ng-model="item.name" class="form-control"></div>
+	                        </div>
+							<div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*주소</label>
+								<div class="col-sm-10">
+									<div class="row input-group m-b">
+										<div class="col-md-4"><input type="text" placeholder="" ng-model="item.addr.zipNo"
+																	class="form-control" readOnly></div>
+										
+										<div class="col-md-2"><input type="button" class="btn primary" ng-click="addrOpen()" value="우편번호검색"></div>
+										
+									</div>
+									<div class="input-group m-b">
+										<input type="hidden"  ng-model="item.addr"/>	
+										{{item.addr.roadAddrPart1 +', '+item.addr.detail+item.addr.roadAddrPart2}}
+									</div>
+									<div class="input-group m-b" style="width:100%">	
+										<input type="text" class="form-control" placeholder="도로명주소" ng-model="item.addr.roadAddrPart1" required readonly>
+									</div>
+									<div class="input-group m-b" style="width:100%">
+										<div class="row">
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="상세주소" ng-model="item.addr.detail" required>
+											</div>
+											<div class="col-md-6">
+													<input type="text" class="form-control" placeholder="참고항목" ng-model="item.addr.roadAddrPart2" required readonly>
+											</div>
+										</div>
+
+										
+									</div>
+									
+								</div>
+								
+                        	</div>
+							<div class="hr-line-dashed"></div>
+	                        
+	                        <div class="form-group"><label class="col-sm-2 control-label">*연락처</label>
+	
+	                            <div class="col-sm-10"><input type="text"  placeholder="연락처" ng-model="item.tel" class="form-control"></div>
+	                        </div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+	
+	                            <div class="col-sm-10">
+	                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('buyer.status')" ng-model='item.status' >
+					                </select>
+					             </div>
+					        </div>        
+					                			
+	                        <div class="form-group">
+	                            <div class="col-sm-6 col-sm-offset-2">
+	                                <button class="btn btn-primary" type="submit">확인</button>
+									<button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

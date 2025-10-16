@@ -1,0 +1,92 @@
+<div oc-lazy-load="StatParcelDailyListModule">
+    <div ng-controller="StatParcelDailyCtrl">
+    
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>매출내역</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a ui-sref="home">홈</a>
+                    </li>
+                    <li>
+                        <a>택배</a>
+                    </li>
+                    <li class="active">
+                        <strong>택배매출내역</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+        
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                                <h5>택배매출내역</h5>
+                                
+                        </div>
+                    
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <form class="m-t" role="form" ng-submit="formSubmit()">
+                                    
+                                    
+                            
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div id="daterange" class="form-control">
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span></span> <b class="caret"></b>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <button class='btn btn-primary' type='submit'>검색</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+               
+        
+            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                        <thead>
+                                           
+                                            <tr>
+                                                <th>주문일</th>
+                                                <th>갯수(선불/후불)</th>
+                                                <th></th>
+                                                <th>결제금액</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in list">
+                                                <td style='vertical-align:middle'>{{item.cdate}}</td>
+                                                
+                                                <td style='vertical-align:middle'>{{item.cnt}}({{item.payType1}}/{{item.payType2}})</td>
+                                                <td style='vertical-align:middle'>{{item.totalPrice|number}}</td>
+                                            </tr>
+                                            <tr ng-show="list.length==0">
+                                                <td colspan=3 align=center>더이상 데이타가 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>
+                             
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,151 @@
+
+                        
+                        
+<div oc-lazy-load="PresentGiftModule">
+<div ng-controller="GiftCtrl">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>상품권발송</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a i-sref="home">홈</a>
+            </li>
+            <li>
+                <a>선물관리</a>
+            </li>
+            <li class="active">
+                <strong>상품권발송</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+            <div class="col-lg-12">
+                <div class="wrapper wrapper-content animated fadeInUp">
+
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>상품권 선물하기</h5>
+                            <!-- 
+                            <div class="ibox-tools">
+                                <a href="" class="btn btn-primary btn-xs">Create new project</a>
+                            </div>
+                            -->
+                        </div>
+                        <div class="ibox-content">
+                        	<form name="myForm" ng-submit="formSubmit()">
+	                        	<div class="row">
+	                                <div class="col-sm-4 m-b-xs">
+	                                <select class="input-sm form-control input-s-sm inline" 
+	                                ng-options="code as code.title for code in goodsList" ng-model='item.goodsJson' required>
+	                                    <option value="">상품권 선택</option>
+	                                </select>
+	                                </div>
+	                                <div class="col-sm-4 m-b-xs">
+	                                	<input type="number" ng-model="item.cnt" placeholder="매수" class="input-sm form-control" required>
+	                                </div>
+	                            </div>    
+	                            <div class="hr-line-dashed"></div>
+	                            <div class="row m-b-sm m-t-sm">
+	                                
+	                                <div class="col-md-12">
+	                                    <div class="input-group" style="width:100%"><input type="text" ng-model="item.title" placeholder="이벤트명" class="input-sm form-control" required></div>
+	                                </div>
+	                            </div>
+								<div class="hr-line-dashed"></div>
+	                            <div class="project-list">
+									<div class="row">
+										<div class="col-lg-7 animated fadeInRight">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="file-box" style="width:180px" ng-repeat="group in buddyGroupList" display-buddy-group>
+													    <div class="file">
+													        <a href="">
+													            <span class="corner"></span>
+													            <div class="file-name text-center" ng-click="onBuddyGroup($index)" >
+													                {{group.groupName}}
+													                <br/>
+													                <small>구성원수 : {{group.buddyCnt}}</small>
+													            </div>
+													            <div class="file-name text-center" ng-if="false">
+																	<button type="button" class="btn btn-primary btn-xs" ng-click="tryGroupDelete(group)
+																	"><i class="fa fa-envelope"></i>삭제</button>
+																	<button type="button" class="btn btn-primary btn-xs" ng-click="openNewBuddy(group)"><i class="fa fa-envelope"></i>추가</button>
+													            </div>
+													        </a>
+													    </div>
+												
+													</div>
+													
+													
+												
+												
+												</div>	
+											</div>
+										</div>
+										
+										<div class="col-lg-5">
+										    <div class="ibox float-e-margins">
+										        <div class="ibox-content">
+										            <div style="display:none" class="file-manager" ng-repeat="group in buddyGroupList">
+										                <h5>{{group.groupName}}:{{group.buddyCnt}}명</h5>
+										
+										                <div class="hr-line-dashed"></div>
+										                <div class="table-responsive">
+								                                <table class="table table-striped">
+								                                    <thead>
+								                                    <tr>
+								
+								                                        <th>선택</th>
+								                                        <th>이름</th>
+								                                        <th>핸드폰</th>
+								                                        <th>생일</th>
+								                                        
+								                                    </tr>
+								                                    </thead>
+								                                    <tbody>
+								                                    <tr ng-repeat="buddy in group.buddyList">
+								                                        <td><input type="checkbox"  ng-model="buddy.checked" ng-true-value="'Y'" ng-false-value="'N'" class="i-checks" name="input[]"></td>
+								                                        <td>{{buddy.name}}</td>
+								                                        <td>{{buddy.hp}}</td>
+								                                        <td>{{buddy.birthDay}}</td>
+								                                    </tr>
+								                                    </tbody>
+								                                </table>
+								                        </div>
+										                
+										                <div class="clearfix"></div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
+										
+									</div>
+	                                
+	                            </div>
+	                            <div class="hr-line-dashed"></div>
+	                            <div class="row m-b-sm m-t-sm">
+	                                
+	                                <div class="col-md-12">
+	                                    <div class="input-group" style="width:100%"><textarea class="form-control" ng-model="item.textMsg" placeholder="메세지"></textarea></div>
+	                                </div>
+	                            </div>
+	                            <div class="hr-line-dashed"></div>
+	                            <div class="row m-b-sm m-t-sm">
+	                                <div class="col-sm-4 col-sm-offset-2 pull-right">
+	                                    <button class="btn btn-white" type="button">취소</button>
+	                                    <button class="btn btn-primary" type="submit">보내기</button>
+	                                </div>
+	                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>                        

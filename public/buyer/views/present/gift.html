@@ -1,0 +1,59 @@
+<div oc-lazy-load="PresentGiftModule">
+<div ng-controller="GiftCtrl">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>상품선물하기</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">홈</a>
+            </li>
+            <li>
+                <a>선물관리</a>
+            </li>
+            <li class="active">
+                <strong>상품선물하기</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                
+                <div class="ibox-content wizard">
+                    
+                    <div class="steps clearfix" st yle="display:none">
+                        <ul>
+                            <li class="current"  style="width:25%">
+                                <a ui- sref=".step1()" class="btn-default"><span class="badge">Step 1</span> 상품선택</a>
+                            </li>
+                            <li ui-sref- active="current"  style="width:25%">
+                                <a ui- sref=".step2()" class="btn-default"><span class="badge">Step 2</span> 받는사람 선택</a>
+                            </li>
+                            <li ui-sref- active="current"  style="width:25%">
+                                <a id='top_menu' ui- sref=".step3()" class="btn-default"><span class="badge">Step 3</span> 메시지 입력</a>
+                            </li>
+                            <li ui-sref- active="current"  style="width:25%">
+                                <a id='top_menu' ui- sref=".step4()" class="btn-default"><span class="badge">Step 4</span> 선물발송</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    <div class="wi zard">
+                        <div cla ss="content">    
+                            	<div id="form-views" ui-view></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

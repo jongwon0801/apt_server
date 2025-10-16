@@ -1,0 +1,140 @@
+<div oc-lazy-load="ShopListModule">
+<div ng-controller="ShopListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>상점</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>상점</a>
+	            </li>
+	            <li class="active">
+	                <strong>상점 목록</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>상점 목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="shop.edit" class="btn btn-primary btn-sm">상점 등록</a>
+                            </div>
+                    </div>
+	            
+	                <div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.companyName' placeholder="회사명" class="form-control">
+					                </div>
+					            </div>
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('customer.status')" ng-model='sform.status'>
+					                		<option value=''>상태선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <!-- 
+					            <div class="col-sm-3">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+					             -->
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	
+	                                        
+											<th>상점명</th>
+											<th>상점유형</th>
+											<th>등록일</th>
+				                            <th>상태</th>
+				                            
+											
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+											<td style='vertical-align:middle'><a ui-sref="shop.edit(item)">{{item.companyName}}</a></td>
+											<td style='vertical-align:middle'>
+	                                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('shop.kind')" ng-model='item.kind' disabled>
+					                				</select>
+					                		</td>
+	                                        
+											<td style='vertical-align:middle'>{{item.regDate | date:'yyyy-MM-dd'}}</td>
+	                                        <td style='vertical-align:middle'>
+	                                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('shop.status')" ng-model='item.status' disabled>
+					                				</select>
+					                			
+					                		</td>
+	                                        
+	                                        
+											
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                            </table>
+                        </div>
+						<div class="row">
+						
+						    <div class="col-md-6 col-md-offset-3">
+						    	<pagination 
+						    	ng-change="pageChanged(currentPage)"
+						    	total-items="totalItems" 
+						    	ng-model="currentPage"
+						    	next-text="다음"
+						    	previous-text="이전" 
+						    	first-text="처음"
+						    	last-text="마지막"
+						    	max-size="maxSize" 
+						    	items-per-page="display"
+						    	class="pagination-sm" 
+						    	boundary-links="true" 
+						    	rotate="false" 
+						    	num-pages="numPages"></pagination>
+						    </div>
+						</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

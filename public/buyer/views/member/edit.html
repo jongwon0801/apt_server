@@ -1,0 +1,83 @@
+<div oc-lazy-load="MemberEditModule">
+<div ng-controller="MemberEditCtrl">
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>사용자</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            
+	            <li class="active">
+	                <strong>회원수정</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+	    
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>회원 수정 
+	                        <small>* 는 필수항목입니다.</small>
+	                    </h5>
+	                    
+	                </div>
+	                <div class="ibox-content">
+	                    <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+	                        <div class="form-group"><label class="col-sm-2 control-label">*고유번호</label>
+		                            <div class="col-sm-10"><input type="text"  ng-model="item.memberSq" class="form-control" readOnly></div>
+		                     </div>
+		                    
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*전화번호</label>
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.hp" class="form-control" readOnly></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group"><label class="col-sm-2 control-label">*regId</label>
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.regId" class="form-control" readOnly></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*이름</label>
+	
+	                            <div class="col-sm-10"><input type="text"  ng-model="item.name" class="form-control" readOnly></div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*핸드폰OS</label>
+	
+	                            <div class="col-sm-2">
+	                            	<select class="form-control" ng-options="code.key as code.name for code in myCache.get('member.media')" ng-model='item.media' disabled>
+	                            	</select>
+								</div>
+	                        </div>
+	                        <div class="hr-line-dashed"></div>
+							<div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+								
+	                            <div class="col-sm-2">
+	                            
+	                            	<select class="form-control" ng-options="code.key as code.name for code in myCache.get('member.status')" ng-model='item.status'>
+	                            	</select>
+	                            	
+								</div>
+	                        </div>
+	                        
+	                        <div class="hr-line-dashed"></div>
+	                        <div class="form-group">
+	                            <div class="col-sm-4 col-sm-offset-2">
+	                                <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+	                                <button class="btn btn-primary" type="submit">확인</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>

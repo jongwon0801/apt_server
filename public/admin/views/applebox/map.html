@@ -1,0 +1,38 @@
+
+
+
+<div oc-lazy-load="AppleboxMapModule">
+    
+    <div ng-controller="AppleboxMapCtrl">
+
+
+<form class="m-t" role="form" ng-submit="formSubmit()">
+        <div class="col-sm-2">
+            <div class="form-group">
+                
+                <select class="form-control" ng-model='sform.stype' ng-change="dataChange()">
+                    
+                    <option value='A'>설치지역</option>
+                    <option value='B'>서비스가능지역</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2" ng-if="sform.stype=='B'">
+            <div class="form-group">
+                
+                <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('shop.kind')" ng-model='sform.kind'>
+                    <option value=''>서비스</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button class='btn btn-primary' type='submit'>검색</button>
+            </div>
+        </div>
+    </form>
+        <div id="map" style='width:100%; height:600px;'></div>
+    
+    </div>
+</div>

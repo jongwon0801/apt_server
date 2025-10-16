@@ -1,0 +1,136 @@
+<div oc-lazy-load="OrderThingsListModule">
+<div ng-controller="OrderThingsListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>주문</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>주문</a>
+	            </li>
+	            <li class="active">
+	                <strong>주문 목록</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>주문 목록</h5>
+                            
+                    </div>
+	            
+	                <div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.name' placeholder="이름" class="form-control">
+					                </div>
+					            </div>
+								<div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.hp' placeholder="연락처" class="form-control">
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('order.status.B')" ng-model='sform.status'>
+					                		<option value=''>상태선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	                                        <th>주문일</th>
+											<th>세탁소</th>
+											<th>주문정보</th>
+                                            <th>보관함위치</th>
+                                            <th>사용자</th>
+                                            <th>진행사항</th>
+											<th>상태</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+											<td style='vertical-align:middle'><a ng-click="onThingsView(item)">{{item.regDate | date:'yyyy-MM-dd'}}</a></td>
+											<td style='vertical-align:middle'>
+                                                <select class="form-control" ng-options="code.shopSq as code.companyName for code in shopList" ng-model='item.shopSq' ng-disabled="true">
+											</select></td>
+											<td style='vertical-align:middle'>상의:{{item.things.upper_cnt}}, 하의:{{item.things.down_cnt}}, 기타:{{item.things.etc_cnt}}</td>
+											<td style='vertical-align:middle'><a ng-if="item.locker" ng-click="onAppleboxView(item.locker)">{{item.locker.boxName}}({{item.locker.label}})</a></td>
+											<td style='vertical-align:middle'><a ng-click="onMemberView(item)" ng-bind="item.memberSq"></a></td>
+											<td>
+													<button class='btn btn-primary' type='button' ng-if="item.status=='E'" ng-click="complete(item,'F')">세탁완료</button>
+													<button class='btn btn-primary' type='button' ng-if="item.status=='F'" ng-click="complete(item,'G')">배달준비</button>
+											</td>
+											<td style='vertical-align:middle'>
+	                                        		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('order.status.B')" ng-model='item.status' disabled>
+					                				</select>
+					                		</td>
+	                                        
+	                                        
+											
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                            </table>
+                        </div>
+						<div class="row">
+						
+						    <div class="col-md-6 col-md-offset-3">
+						    	<pagination 
+						    	ng-change="pageChanged(currentPage)"
+						    	total-items="totalItems" 
+						    	ng-model="currentPage"
+						    	next-text="다음"
+						    	previous-text="이전" 
+						    	first-text="처음"
+						    	last-text="마지막"
+						    	max-size="maxSize" 
+						    	items-per-page="display"
+						    	class="pagination-sm" 
+						    	boundary-links="true" 
+						    	rotate="false" 
+						    	num-pages="numPages"></pagination>
+						    </div>
+						</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

@@ -1,0 +1,197 @@
+
+<div oc-lazy-load="OkboxEditModule">
+        <div ng-controller="OkboxEditCtrl">	
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>기부글 정보 </h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a ui-sref="home">홈</a>
+                        </li>
+                        <li>
+                            <a>기부글 정보</a>
+                        </li>
+                        <li class="active">
+                            <strong>기부글 편집</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+            
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            
+                            <div class="ibox-title">
+                                <h5>기부글정보관리 
+                                    <small>* 는 수정할수 있는 항목입니다.</small>
+                                </h5>
+                                
+                            </div>
+                            <div id='template-container'></div>
+                            <div class="ibox-content">
+                                <form method="post" class="form-horizontal" ng-submit="formSubmit()" name="myForm">
+                                    
+                                    
+                                    <div class="form-group"><label class="col-sm-2 control-label">*작성자</label>
+        
+                                        <div class="col-sm-10">{{item.memberSq}}</div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*제목</label>
+                                        <div class="col-sm-10"><input type="text"  placeholder="제목" ng-model="item.companyName" class="form-control" required></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*사연</label>
+                                        <div class="col-sm-10">
+                                                    <textarea ng-model="item.intro" type="text" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    <div class="form-group"><label class="col-sm-2 control-label">*핀코드</label>
+                                        <div class="col-sm-10">{{item.pincode}}</div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*추천수</label>
+                                        <div class="col-sm-10">{{item.recoCnt}}</div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*조회수</label>
+                                        <div class="col-sm-10">{{item.viewCnt}}</div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*포인트</label>
+                                        <div class="col-sm-10"><input type="number"  placeholder="상점명" ng-model="item.point" class="form-control" required></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*등록일</label>
+                                        <div class="col-sm-10">{{item.regDate | date:'yyyy-MM-dd HH:mm' }}</div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+            
+                                        <div class="col-sm-10">
+                                            <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('donation.status')" ng-model='item.status' >
+                                            </select>
+                                         </div>
+                                    </div>    
+                                    
+                                    
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-sm-2 control-label">*사진</label>
+                                        <div class="col-sm-10">
+                                            <div class="dropzone"  id="dropzone" dropzone="dropzoneConfig"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group"><label class="col-sm-2 control-label">*상태</label>
+            
+                                        <div class="col-sm-10">
+                                            <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('donation.status')" ng-model='item.status' >
+                                            </select>
+                                         </div>
+                                    </div>        
+                                                        
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">확인</button>
+                                            <button class="btn btn-white" type="button" ng-click="back()">취소</button>
+                                            
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- The Modal -->
+<div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+      </div>
+      
+<style>
+        /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+</style>

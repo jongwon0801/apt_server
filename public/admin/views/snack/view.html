@@ -1,0 +1,199 @@
+<div oc-lazy-load="SnackViewModule">
+<div ng-controller="SnackViewCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>간식데이</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>자동주문</a>
+	            </li>
+	            <li class="active">
+	                <strong>간식데이</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	           		 
+	            	<div class="ibox-title">
+                            <h5>간식데이 상세정보</h5>
+                            
+                    </div>
+	            
+	                
+                    
+                    <div class="ibox-content">
+				        
+                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="alert alert-info">
+							        <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                                    <span ng-repeat="item in autoOrder.goods">
+                                        {{item.goodsTitle}} {{item.cnt}}개 
+                                    </span>    
+                                    총 {{autoOrder.goods.length}}개 서비스 이용중 <br>
+                                    <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+							        서비스 기간:{{startDate}} ~ {{endDate}} 
+                                     
+	                            </div>
+                                
+                            </div>
+                        </div>  
+						
+	                    <div class="row">
+                            <div class="col-lg-12">
+						        <!--
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>상품</th>
+                                                <th>수량</th>
+                                                <th>금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in autoOrder.goods">
+                                                <td style="vertical-align:middle">{{item.goodsTitle}}</td>
+                                                <td style="vertical-align:middle">{{item.cnt}}</td>
+                                                <td style="vertical-align:middle">월 {{item.price*item.cnt|number}}(1년)</td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                                -->
+                                <accordion close-others="false">
+                                    <accordion-group is-open="status.open" is-disabled="false" panel-class="panel-danger">
+                                        <accordion-heading>
+                                            <i ng-class="{'fa fa-minus': status.open, 'fa fa-plus': !status.open}"></i>
+                                            간식데이 내역조회
+                                        </accordion-heading>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                
+                                                        <th>선물발송일</th>
+                                                        <th>이벤트 명</th>
+                                                        <th>합계금액</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item1 in giftEventList">
+                                                        <td>{{item1.regDate | date:'yyyy-MM-dd'}}</td>
+                                                        <td>{{item1.title}}</td>
+                                                        <td>{{item1.fillPrice|number}}원</td>
+                                                        
+                                                    </tr>
+                                                    <tr ng-show="giftEventList.length==0">
+                                                        <td colspan=5 align=center>보낸 데이타가 없습니다.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>    
+                                        </div>
+                                    
+                                    </accordion-group>
+                                    
+                                    <accordion-group is-op en="item.open" is-disabled="true"  ng-repeat="item in autoOrder.goods">
+                                        <accordion-heading>
+                                            
+                                            {{item.goodsTitle}}, 수량:{{item.cnt}}개, 총가격:{{item.price*item.cnt|number}}원
+                                           <button class='btn btn-primary btn-xs pull-right' ng-click="popupGift(item)">선물보내기</button>
+                                        </accordion-heading>
+                                    </accordion-group>
+                                </accordion>    
+                            </div>
+	                    </div>  
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>배송일</th>
+                                                <th>간식데이는 매월 둘째주,네째주 목요일 2회 배송됩니다.<br>
+                                                배송일이 휴일이면 다음날 배송됩니다.</th>
+                                        
+                                            </tr>
+                                            <tr>
+                                                <th>배송주소</th>
+                                                <th>
+                                                    
+                                                    <div class="input-group m-b">
+                                                        [{{autoOrder.shipping.addr.zipNo}}] {{autoOrder.shipping.addr.addr}} {{autoOrder.shipping.addr.addrDetail}}
+                                                    </div>
+                                                    
+                                                    
+                                                </th>
+                                        
+                                            </tr>
+                                            <tr>
+                                                <th>결제방법</th>
+                                                
+                                                <th>
+                                                    <div class="input-group m-b">
+                                                        {{autoOrder.payType=='card'?'카드결제':'현금결제'}}
+                                                    </div>
+                                                    
+                                                </th>    
+                                            </tr>
+                                        </thead>
+                                    
+                                    </table>
+                                </div>
+                            </div>            
+                        </div>
+                        <!--        
+				        <div class="row">
+                            
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+        
+                                                <th>선물발송일</th>
+                                                <th>이벤트 명</th>
+                                                <th>합계금액</th>
+                                                <th>선물보내기</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in list">
+                                                <td>{{item.regDate | date:'yyyy-MM-dd'}}</td>
+                                                <td>{{item.title}}</td>
+                                                <td>{{item.cnt*item.goods.salePrice+item.shippingPrice|number}}원</td>
+                                                <td><input type='button' class='btn btn-white'>선물보내기</button></td>
+                                            </tr>
+                                            <tr ng-show="list.length==0">
+                                                <td colspan=5 align=center>보낸 데이타가 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>    
+                                </div>
+                            </div>
+				        </div>
+                        -->
+	                </div><!--ibox-content-->
+	            </div><!--ibox-->
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

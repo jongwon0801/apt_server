@@ -1,0 +1,161 @@
+<div oc-lazy-load="GoodsListModule">
+<div ng-controller="GoodsListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>상품목록</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>상품관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>상품목록</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>회원목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="goods.edit.step_one" class="btn btn-primary btn-sm">쿠폰상품 등록</a>
+                            </div>
+                    </div>
+					<div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <!-- 
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                	<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('goods.category')" ng-model='sform.category'>
+					                		<option value=''>상품분류선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					             -->
+                                 
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <select class="form-control" ng-options="code.key as code.name for code in myCache.get('goods.cate')" ng-model='item.cate' required>
+                                            <option value=''>1차분류</option>
+                                        </select>
+                                    </span>   	
+                                    <span class="input-group-btn">
+                                        <select class="form-control"  ng-options="code.key as code.name for code in category2List" ng-model='item.category' required>
+                                            <option value=''>2차분류</option>
+                                        </select>
+                                    </span>   	
+                                </div>     
+                                </div>     
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('goods.status')" ng-model='sform.status'>
+					                		<option value=''>상태선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					           
+					            <div class="col-sm-4">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+											<th>상품형태</th>
+	                                        <th>이미지</th>
+				                            <th>상품명</th>
+				                            <th>가격</th>
+				                            <th>상태</th>
+				                            <th>등록일</th>
+				                            <th>꼬리표</th>
+				                            
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+	                                    	<td style="vertical-align:middle;width:100px;">
+	                                    		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('goods.kind')" ng-model='item.kind' disabled>
+						                        </select>
+	                                    	</td>
+	                                        <td><img ng-src="{{item.thumbnail.thumbnailUrl}}" width="80" height="60"></td>
+	                                        <td style="vertical-align:middle"><a ui-sref='goods.view(item)'>{{item.title}}</a></td>
+	                                        <td style="vertical-align:middle">{{item.salePrice | number}}원</td>
+	                                        <td style="vertical-align:middle; width:100px;">
+	                                        <div class="form-group">
+								            	 <select class="form-control" ng-model='item.status'>
+								            	 	<option value='A' ng-if="item.status=='A'">심사중</option>   
+								            	 	<option value='B'>판매중</option>
+								            	 	<option value='C'>판매중지</option>
+								            	 </select>
+								            </div>
+	                                        </td>
+	                                        <td style="vertical-align:middle">{{item.regDate | date:'yyyy-MM-dd'}}</td>
+	                                        
+											<td><button type='button' class='btn' ng-click="itemUpdate(item)">수정</button></td>
+	                                    </tr>
+	                                    
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

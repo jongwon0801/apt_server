@@ -1,0 +1,117 @@
+<div oc-lazy-load="SnackGoodsListModule">
+<div ng-controller="SnackGoodsListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>간식상품목록</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>자동주문관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>간식상품목록 </strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>간식상품목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="snack.goods.edit" class="btn btn-primary btn-sm">간식상품 등록</a>
+                            </div>
+                    </div>
+					<div class="ibox-content">
+                        
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            
+					            <div class="col-sm-2">
+					               <div class="form-group">
+                                                <select class="form-control" ng-options="code.gubun as code.goodsTitle+'('+code.gubun+')'  for code in pkgList" ng-model='sform.gubun'>
+                                                    <option value=''>서비스유형</option> 
+                                                </select>
+                                        </div>
+		                            
+					            </div>
+					            
+					            
+                                
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	                    
+	
+	    
+	                    <div class="table-responsive">
+                        	<table class="table table-bordered">
+						    	<thead>
+						    		<tr>
+                                        <td>일련번호</td>
+                                        <td>상품유형</td>
+                                        <td>배송일</td>
+						    			<td>등록일</td>
+						    			<td>예약상품등록</td>
+                                        
+						    		</tr>	
+						    	</thead>
+							    <tbody>
+							    	<tr ng-repeat="item in list">
+                                        <td><a ui-sref="snack.goods.edit(item)">{{item.snackGoodsSq}}</a></td>
+                                        <td>{{item.gubun}}</td>
+                                        <td>{{item.shippingDate | date:'yyyy-MM-dd'}}</td>
+							    		<td>{{item.regDate | date:'yyyy-MM-dd HH:mm'}}</td>
+							    		<td style="vertical-align:middle">
+                                            <button type='button' class='btn btn-white' ng-click="onRegister(item)">예약상품으로 등록</button>
+                                        </td>
+							    		
+							         </tr>
+							    	
+								</tbody>
+							</table>    
+                        </div>
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

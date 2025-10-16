@@ -1,0 +1,126 @@
+<div oc-lazy-load="PresentListModule">
+<div ng-controller="ListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>선물발송내역</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>선물관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>선물발송내역</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>발송내역</h5>
+                            
+                    </div>
+	            
+	                <div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-model='sform.gubun'>
+					                		<option value=''>발송구분</option>
+					                		<option value='A'>배송</option>
+					                		<option value='B'>휴대폰</option>
+                                            <option value='C'>간식데이</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <div class="col-sm-3">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+	
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	
+	                                        <th>선물발송일</th>
+	                                        <th>상품명</th>
+				                            <th>가격</th>
+				                            <th>선물수량</th>
+				                            <th>상품총금액</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+	                                    	<td>{{item.regDate | date:'yyyy-MM-dd'}}</td>
+	                                        <td ng-if="item.gubun!='C'"><a ui-sref="present.view(item)">{{item.goods.title}}</a></td>
+                                            <td ng-if="item.gubun=='C'"><a ui-sref="present.view(item)">{{item.goods[0].title}} 외 {{item.goods.length}}개</a></td>
+											<td>{{item.goods.salePrice|number}}</td>
+	                                        <td>{{item.cnt|number}}</td>
+                                            <td >{{item.goods.salePrice*item.cnt|number}}</td>
+	                                        
+	                                        
+	                                        
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

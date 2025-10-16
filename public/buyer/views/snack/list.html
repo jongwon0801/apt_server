@@ -1,0 +1,129 @@
+<div oc-lazy-load="SnackListModule">
+<div ng-controller="SnackListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>주문목록</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>자동주문관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>주문목록 </strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>주문목록</h5>
+                            <div class="ibox-tools">
+                                <a ui-sref="goods.edit.step_one" class="btn btn-primary btn-sm">상품 등록</a>
+                            </div>
+                    </div>
+					<div class="ibox-content">
+                        <!--
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                	<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('goods.category')" ng-model='sform.category'>
+					                		<option value=''>상품카테고리</option>
+				                        </select>
+					                </div>
+					            </div>
+					            
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('goods.status')" ng-model='sform.status'>
+					                		<option value=''>상태선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					           
+					            <div class="col-sm-4">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+                                
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	                    -->
+	
+	    
+	                    <div class="table-responsive">
+                        	<table class="table table-bordered">
+						    	<thead>
+						    		<tr>
+                                        <td>고객사명</td>
+						    			<td>간식보내기</td>
+						    			<td>신청일</td>
+                                        <td>상태</td>
+                                        <td>과금방식</td>
+						    		</tr>	
+						    	</thead>
+							    <tbody>
+							    	<tr ng-repeat="item in list">
+                                        <td><a ui-sref="customer.edit(item)">{{item.companyName}}</a></td>
+                                        <td><a ui-sref="snack.view(item)">간식보내기</a></td>
+							    		<td>{{item.regDate | date:'fullDate'}}</td>
+							    		<td>{{item.status}}</td>
+							    		<td>{{item.payType}}</td>
+							         </tr>
+							    	
+								</tbody>
+							</table>    
+                        </div>
+                        <!--
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				            -->
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>
