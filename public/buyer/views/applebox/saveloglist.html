@@ -1,0 +1,127 @@
+<div oc-lazy-load="SaveLogModule">
+<div ng-controller="SaveLogCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>수령내역</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>보관함</a>
+	            </li>
+	            <li class="active">
+	                <strong>수령내역</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+                            <h5>수령 내역</h5>
+                            
+                    </div>
+	            
+	                <div class="ibox-content">
+						<div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2" ng-if="false">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.uuid' placeholder="uuid" class="form-control">
+					                </div>
+					            </div>
+								<div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.usage')" ng-model='sform.usage'>
+					                		<option value=''>용도선택</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.toHp' placeholder="핸드폰(받는이)" class="form-control">
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <input type="text"  ng-model='sform.saveHp' placeholder="핸드폰(보낸이)" class="form-control">
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+											<th>yid</th>
+	                                        <th>케비넷</th>
+				                            <th>용도</th>
+                                            <th>보낸는이</th>
+                                            <th>받는이</th>
+                                            <th>보관일</th>
+                                            
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+											<td style='vertical-align:middle'><a ui-sref="applebox.edit(item)">{{item.yid}}</a></td>
+                                            <td style='vertical-align:middle'><a ng-click='viewLog(item)'>{{item.label}}</a></td>
+                                            <td style='vertical-align:middle'>{{myCache.getValue('locker.usage',item.usage)}}</td>
+                                            <td style='vertical-align:middle'>{{item.saveName||'없음'}}-{{item.saveHp}}</td>
+                                            <td style='vertical-align:middle'>{{item.toName||'없음'}}-{{item.toHp}}</td>
+                                            <td style='vertical-align:middle'>{{item.saveDate | date:'yyyy-MM-dd HH:mm'}}</td>
+                                            
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan='10' align='center'>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                            </table>
+                        </div>
+						<div class="row">
+						
+						    <div class="col-md-6 col-md-offset-3">
+						    	<pagination 
+						    	ng-change="pageChanged(currentPage)"
+						    	total-items="totalItems" 
+						    	ng-model="currentPage"
+						    	next-text="다음"
+						    	previous-text="이전" 
+						    	first-text="처음"
+						    	last-text="마지막"
+						    	max-size="maxSize" 
+						    	items-per-page="display"
+						    	class="pagination-sm" 
+						    	boundary-links="true" 
+						    	rotate="false" 
+						    	num-pages="numPages"></pagination>
+						    </div>
+						</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

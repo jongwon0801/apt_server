@@ -1,0 +1,140 @@
+<div oc-lazy-load="SalesListModule">
+<div ng-controller="SalesListCtrl">
+
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>정산내역</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a ui-sref="home">홈</a>
+	            </li>
+	            <li>
+	                <a>선물관리</a>
+	            </li>
+	            <li class="active">
+	                <strong>정산내역</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+	
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+	
+		
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	           		 
+	            	<div class="ibox-title">
+                            <h5>발송내역</h5>
+                            
+                    </div>
+	            
+	                <div class="ibox-content">
+				        <div class="row m-b-sm m-t-sm">
+					        <form class="m-t" role="form" ng-submit="formSubmit()">
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-model='sform.taxYn'>
+					                		<option value=''>과세구분</option>
+					                		<option value='Y'>과세</option>
+					                		<option value='N'>비과세</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    
+					                    <select class="form-control" ng-model='sform.gubun'>
+					                		<option value=''>발송구분</option>
+					                		<option value='A'>배송</option>
+					                		<option value='B'>휴대폰</option>
+                                            <option value='C'>간식데이</option>
+				                        </select>
+					                </div>
+					            </div>
+					            <div class="col-sm-3">
+					            	<div class="form-group">
+					            		<div id="daterange" class="form-control">
+				                                <i class="fa fa-calendar"></i>
+				                                <span></span> <b class="caret"></b>
+				                        </div>
+					            	</div>
+					            </div>
+					            <div class="col-sm-2">
+					                <div class="form-group">
+					                    <button class='btn btn-primary' type='submit'>검색</button>
+					                </div>
+					            </div>
+				            </form>
+				        </div>
+	       
+						<div class="table-responsive" style="border:1px solid gray">
+                            <table class="table">
+                                    
+                                    <tbody>
+	                                    <tr>
+	                                    	<td>전체매입:</td><td>{{stat.total|number}}원(과세<span tooltip="부가세가 있는 상품" class="glyphicon glyphicon-question-sign"></span>:{{stat.taxY|number}}원,비과세<span tooltip="부가세가 없는 상품" class="glyphicon glyphicon-question-sign"></span>:{{stat.taxN|number}}원,선불<span tooltip="매월말에 결제 청구되는 상품" class="glyphicon glyphicon-question-sign"></span>:{{stat.payY|number}}원,후불<span tooltip="즉시 결제되는 상품" class="glyphicon glyphicon-question-sign"></span>:{{stat.payN|number}}원)</td>
+	                                    </tr>
+	                                   	                                    
+                                    </tbody>
+                                </table>
+                            </div>
+	    
+	                    <div class="table-responsive">
+                            <table class="table table-striped">
+                                    <thead>
+	                                    <tr>
+	
+	                                        <th>선물발송일</th>
+	                                        <th>이벤트 명</th>
+				                            <th>합계금액</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+	                                    <tr ng-repeat="item in list">
+	                                    	<td>{{item.regDate | date:'yyyy-MM-dd'}}</td>
+	                                        <td><a ui-sref="sales.view(item)">{{item.title}}</a></td>
+	                                        <td>{{item.salePrice|number}}원</td>
+	                                        
+	                                        
+	                                    </tr>
+                                    	<tr ng-show="list.length==0">
+                                    		<td colspan=5 align=center>더이상 데이타가 없습니다.</td>
+                                    	</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							<div class="row">
+							
+							    <div class="col-md-6 col-md-offset-3">
+							    	<pagination 
+							    	ng-change="pageChanged(currentPage)"
+							    	total-items="totalItems" 
+							    	ng-model="currentPage"
+							    	next-text="다음"
+							    	previous-text="이전" 
+							    	first-text="처음"
+							    	last-text="마지막"
+							    	max-size="maxSize" 
+							    	items-per-page="display"
+							    	class="pagination-sm" 
+							    	boundary-links="true" 
+							    	rotate="false" 
+							    	num-pages="numPages"></pagination>
+							    </div>
+							</div>
+								
+				
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	</div>
+</div>
+</div>

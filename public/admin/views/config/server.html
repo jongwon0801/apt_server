@@ -1,0 +1,92 @@
+<div oc-lazy-load="ConfigServerModule">
+    <div ng-controller="ConfigServerCtrl">
+    
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>서버목록</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a ui-sref="home">홈</a>
+                    </li>
+                    <li class="active">
+                        <strong>서버목록</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+        
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                                <h5>서버목록</h5>
+                                
+                                
+                                
+                        </div>
+                    
+                        <div class="ibox-content">
+            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <!--<th>아이디</th>-->
+                                                <th>이름</th>
+                                                <th>아이피</th>
+                                                <th>os</th>
+                                                <th>보관함</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in list">
+                                                
+                                                <!--<td>{{item.CMID}}</td>-->
+                                                <td>{{item.name | tel}}</td>
+                                                <td><a href="http://{{item.ip}}/admin" target="_new">{{item.ip}}</a></td>
+                                                <td>{{item.os}}</td>
+                                                <td>{{item.wikibox | json}}</td>
+                                                
+                                            </tr>
+                                            <tr ng-show="list.length==0">
+                                                <td colspan=7 align=center>더이상 데이타가 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <pagination 
+                                        ng-change="pageChanged(currentPage)"
+                                        total-items="totalItems" 
+                                        ng-model="currentPage"
+                                        next-text="다음"
+                                        previous-text="이전" 
+                                        first-text="처음"
+                                        last-text="마지막"
+                                        max-size="maxSize" 
+                                        items-per-page="display"
+                                        class="pagination-sm" 
+                                        boundary-links="true" 
+                                        rotate="false" 
+                                        num-pages="numPages"></pagination>
+                                    </div>
+                                </div>
+                                    
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </div>
+    </div>
+    </div>

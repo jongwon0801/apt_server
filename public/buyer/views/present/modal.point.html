@@ -1,0 +1,33 @@
+<form  role="form" id="myForm" ng-submit="ok()">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+		<h4 class="modal-title">포인트 결제</h4>
+	</div>
+	<div class="modal-body">
+		
+			<div class="form-group">
+				남아있는  결제금액:{{fillPrice | number}}원
+			</div>
+			<div class="form-group">
+				내보유 포인트:{{myPoint | number}}원
+			</div>
+			<div class="form-group row">
+				<div class="form-inline">
+	    		 <input type="number" class="form-control" style="width:100px" ng-model="usePoint" placeholder="이름"  required>
+		    		<button type='button' class='btn btn-white' ng-click="useTotalPoint()">전액사용</button>	
+		    	</div>
+	  		</div>
+	  		 
+		    	
+	  		
+				
+  				
+		
+	</div>
+
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-success">확인</button>
+	</div>
+
+</form>
+

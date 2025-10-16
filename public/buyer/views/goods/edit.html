@@ -1,0 +1,69 @@
+<div oc-lazy-load="GoodsEditModule">
+<div ng-controller="EditCtrl">
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>쿠폰상품등록</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">홈</a>
+            </li>
+            <li>
+                <a>상품관리</a>
+            </li>
+            <li class="active">
+                <strong>쿠폰상품등록</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+	
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                
+                <div class="ibox-content wizard">
+                    <h2>
+                        쿠폰상품등록
+                    </h2>
+					
+                    <div class="steps clearfix">
+                        <ul>
+
+                            <li ui-sref-active="current">
+                                <a ui-sref=".step_one" class="btn-default"><span>1</span> 상품기본정보</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".step_two" class="btn-default"><span>2</span> 상품상세설명</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="wizard">
+                        <div class="content">
+
+
+                        	<form name="form" id="form" ng-submit="processForm()" class="p-lg">
+    
+                            	<div id="form-views" ui-view></div>
+                            
+                            </form>
+                        
+					
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

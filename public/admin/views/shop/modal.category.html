@@ -1,0 +1,79 @@
+<form  role="form" id="myForm" ng-submit="trySave()">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;</button>
+		<h4 class="modal-title">락커</h4>
+	</div>
+	<div class="modal-body">
+			
+  			
+  			<div class="form-group">
+    
+	    		<input type="text" class="form-control" ng-model="item.label" placeholder="라벨" required>
+  			</div>
+  			<div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.col" placeholder="열"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.row" placeholder="행"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.jumper" placeholder="점퍼"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.serial" placeholder="시리얼"/>
+  			</div>
+			  <div class="form-group">
+	    		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.status')" ng-model='item.status'>
+				</select>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.width" placeholder="가로"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.height" placeholder="세로"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='number' class="form-control" ng-model="item.depth" placeholder="깊이"/>
+  			</div>
+			
+			  <div class="form-group">
+	    		<input type='text' class="form-control" ng-model="item.saveHp" placeholder="발송인핸드폰"/>
+  			</div>
+			  <div class="form-group">
+	    		<input type='text' class="form-control" ng-model="item.saveName" placeholder="발송인이름"/>
+  			</div>
+			<div class="form-group">
+				<input class="form-control" type="text" ng-model="item.saveDate"  placeholder="발송 시간">
+	    		
+  			</div>
+
+			<div class="form-group">
+	    		<input type='text' class="form-control" ng-model="item.pwd" placeholder="패스워드"/>
+  			</div>
+
+			<div class="form-group">
+	    		<input type='text' class="form-control" ng-model="item.toHp" placeholder="수령인핸드폰"/>
+  			</div>        
+			<div class="form-group">
+	    		<input type='text' class="form-control" ng-model="item.toName" placeholder="수령인명"/>
+  			</div>
+			  <div class="form-group">
+	    		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.usage')" ng-model='item.usage'>
+				</select>
+  			</div>
+  			<div class="form-group">
+	    		<select class="form-control" ng-options="code.key as code.name for code in myCache.cache.get('locker.kind')" ng-model='item.kind'>
+				</select>
+  			</div>
+		
+		
+		
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="close()">취소</button>
+		<button type="submit" class="btn btn-success">저장하기</button>
+	</div>
+</form>
+
+

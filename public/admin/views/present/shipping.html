@@ -1,0 +1,64 @@
+<div oc-lazy-load="PresentShippingModule">
+<div ng-controller="ShippingCtrl">
+
+	<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>배송정보 입력</h5>
+                </div>
+                <div class="ibox-content">
+                	<div class="row">
+						
+                    	
+                    	
+                    </div>		         
+                    <div class="row">
+                    	<div class="col-lg-12">
+							<div>
+	                    		<label>수취인</label>
+	                    		<input type='text' ng-model="item.shipping.to.name" class="form-control">
+	                    	</div>
+	                    	<div>
+	                    		<label>연락처</label>
+	                    		<input type='text' ng-model="item.shipping.to.hp" class="form-control">
+	                    	</div> 
+                    	</div>
+                    	<div class="col-md-12">
+    		
+							<div class="row input-group m-b" style="margin-top:10px;">
+				                <div class="col-md-4"><input type="text" placeholder="" ng-model="item.shipping.addr.zipNo"
+				                                             class="form-control" ng-click="addrOpen()" readOnly></div>
+				                
+				                <div class="col-md-2"><input type="button" class="btn primary" ng-click="addrOpen()" value="우편번호검색" required></div>
+				                
+				            </div>
+				            <div class="input-group m-b">
+				            	<input type="hidden"  ng-model="item.shipping.addr.addr"/>	
+				            	{{item.shipping.addr.addr}}
+				            </div>
+				            <div class="input-group m-b" style="width:100%">	
+				            	<input type="text" class="form-control" placeholder="상세주소" ng-model="item.shipping.addr.addrDetail" required>
+				            </div>
+					                            
+				    	</div>
+				    	<div class="col-md-4">
+				    		<label>배송날짜</label>
+				    		<div class="form-group">
+					    		<div id="daterange" class="form-control">
+					                    <i class="fa fa-calendar"></i>
+					                    <span></span> <b class="caret"></b>
+					            </div>
+				            </div>
+				    	</div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 text-center">
+        	<button type='button' class='btn btn-primary' ng-click="onShippingComplete()">옵션선택완료</button>
+       	</div>
+    </div>
+	
+</div>
+</div>

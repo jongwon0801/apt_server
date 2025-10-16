@@ -1,0 +1,87 @@
+<div oc-lazy-load="PresentOptionFlowerModule">
+<div ng-controller="OptionFlowerCtrl">
+
+	<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox" style="margin-bottom:0;">
+                <div class="ibox-title">
+                    <h5>배송전달 옵션</h5>
+                </div>
+                <div class="ibox-content">
+                	<div class="row">
+						<div class="col-lg-12">
+							<div class="alert alert-success">
+							 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							  
+							  리본에 적용할 문구를 입력하세요.
+							</div>
+							
+							<div>
+	                    		<label>보내는분(좌)</label>
+	                    		<input type='text' ng-model="item.goods.option.leftText" class="form-control" placeholder="예) (주)캔디모바일, 홍길동">
+	                    	</div>
+	                    	<div>
+	                    		<label>전달문구(우)</label>
+	                    		<textarea class="form-control" ng-model="item.goods.option.rightText" placeholder="예) 근조, 축발전"></textarea>
+	                    	</div> 
+                    	</div>
+                    	
+                    	
+                    	<div class="col-lg-6" ng-if="false">
+							<div class="row">
+								<div class="col-lg-6">
+									<div style="width:20px; font-size:20px;  border:1px solid gray">{{item.goods.option.leftText}}</div>
+								</div>
+								<div class="col-lg-6">
+									<div style="width:20px; font-size:20px;  border:1px solid gray;">{{item.goods.option.rightText}}</div>
+								</div>
+							</div>
+							
+							
+	                    	
+                    	</div>
+                    </div>		         
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+	<div class="row">
+	        <div class="col-lg-12">
+	            <div class="ibox">
+	            	<div class="ibox-title">
+	            		<div class="alert alert-success">
+							 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						  리본 전달문구를 아래에서 상황에 맞게 선택하시면 편리합니다.
+						</div>
+						  
+						
+	            		
+	            	</div>
+		            <div class="ibox-content">
+		            	<uib-tabset id="myTab2">
+					    
+					    
+						    <uib-tab index="$index" ng-repeat="rebon in rebonList" ui-sref="present.gift.optflower.example({id:rebon.id})" ui-sref-active="active" active="false">
+						      <uib-tab-heading>
+						        <i class="glyphicon glyphicon-bell"></i> {{rebon.name}}
+						      </uib-tab-heading>
+						    </uib-tab>
+						    
+					 	 </uib-tabset>
+					 </div>
+				  
+				  	 <div ui-view></div>
+	               
+	            </div>
+	        </div>
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<button type='button' class='btn btn-primary' ng-click="onOptionComplete()">옵션선택완료</button>
+		</div>
+	</div>
+</div>
+</div>

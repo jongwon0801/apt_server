@@ -1,0 +1,75 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="dropdown profile-element" dropdown>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{globals.currentUser.userId}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block">관리자 메뉴<b class="caret"></b></span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a ui-sref="logout">로그아웃</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    애플박스
+                </div>
+
+            </li>
+
+            <li ng-class="{active: $state.includes('buyer')}">
+                <a ui-sref="buyer.edit"><i class="fa fa-laptop"></i> <span class="nav-label">내정보</span> </a>
+                
+            </li>
+            
+            <li ng-class="{active: $state.includes('house')}">
+                <a ui-sref="house.houselist"><i class="fa fa-laptop"></i> <span class="nav-label">입주자 관리</span> </a>
+                
+            </li>
+            <li ng-class="{active: $state.includes('order')}" ng-if="false">
+                <a ui-sref="order.parcellist"><i class="fa fa-laptop"></i> <span class="nav-label">주문</span> </a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('order')}">
+                    <li ui-sref-active="active"><a ui-sref="order.parcellist">택배</a></li>
+                    <li ui-sref-active="active"><a ui-sref="order.thingslist">세탁</a></li>
+                    <!--
+                    <li ui-sref-active="active"><a ui-sref="order.superlist">슈퍼</a></li>
+                    -->
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('applebox')}">
+                <a ui-sref="applebox.list"><i class="fa fa-laptop"></i> <span class="nav-label">보관함</span> <span class="fa arrow"></span> </a>
+                
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('applebox')}">
+                    <li ui-sref-active="active"><a ui-sref="applebox.list">목록</a></li>
+                    <!--
+                    <li ui-sref-active="active"><a ui-sref="applebox.thingslist">보관물품</a></li>
+                    -->
+                    <li ui-sref-active="active"><a ui-sref="applebox.saveloglist">보관로그</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.takeloglist">수령로그</a></li>
+                    <li ui-sref-active="active"><a ui-sref="applebox.map">지도</a></li>
+                </ul>
+                
+            </li>
+            <li ng-class="{active: $state.includes('rfid')}">
+                    <a ui-sref="rfid.list"><i class="fa fa-laptop"></i> <span class="nav-label">보관자</span></a>
+                </li>
+            <li ng-class="{active: $state.includes('stat')}" ng-if="false">
+                    <a ui-sref="pay.laundrydailylist"><i class="fa fa-laptop"></i> <span class="nav-label">매출내역</span> <span class="fa arrow"></span> </a>
+                    
+                    <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('pay')}">
+                        <li ui-sref-active="active"><a ui-sref="stat.laundrydailylist">세탁</a></li>
+                        <li ui-sref-active="active"><a ui-sref="stat.parceldailylist">택배</a></li>
+                        
+                    </ul>
+                    
+                </li>
+            
+        </ul>
+
+    </div>
+</nav>
